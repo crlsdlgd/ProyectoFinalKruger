@@ -1,24 +1,21 @@
 import React from 'react';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
-import '../pages.css'
+import '../pages.css';
 
 const Home = () => {
   return (
     <div className="page-wrapper">
       <div>
         <Header />
-
       </div>
       <div>
-        <h1>Home</h1>
-
+        <p>Aqui va el contenido de home</p>
       </div>
       <div>
         <Footer />
       </div>
     </div>
-
   )
 }
 
