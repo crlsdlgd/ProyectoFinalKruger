@@ -1,14 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Header from '../../components/header/header';
+import Footer from '../../components/footer/footer';
+import '../pages.css'
 
-export const Home = () => {
+const Home = () => {
   return (
+    <div className="page-wrapper">
       <div>
-        
-        <Header/>
-        <h1>Home</h1>
+        <Header />
+
       </div>
-    
+      <div>
+        <h1>Home</h1>
+
+      </div>
+      <div>
+        <Footer />
+      </div>
+    </div>
+
   )
-} 
+}
+
+export default Home;
