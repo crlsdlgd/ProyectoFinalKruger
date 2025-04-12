@@ -1,5 +1,4 @@
-import { Input } from "@heroui/input";
-import { Button } from "@heroui/button";
+import { Input, Button } from "@heroui/react";
 import { useState } from "react";
 import "./login.css";
 
@@ -8,8 +7,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
   };
 
   return (
@@ -26,7 +23,7 @@ const Login = () => {
               variant="underlined"
               placeholder="Enter your email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onValueChange={setEmail}
               autoComplete="off"
             />
             <Input
@@ -37,7 +34,7 @@ const Login = () => {
               variant="underlined"
               placeholder="Enter your password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onValueChange={setPassword}
               autoComplete="off"
             />
             <Button type="submit" className="login-button">
