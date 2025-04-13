@@ -97,15 +97,11 @@ const UserForm = ({ user, setUser, action, buttonAction }) => {
             {isPasswordVisible ? (
               <img
                 src="/svg/eye-slash.svg"
-                alt="Ocultar contraseña"
+                alt="Hide password"
                 className="w-5 h-5"
               />
             ) : (
-              <img
-                src="/svg/eye.svg"
-                alt="Mostrar contraseña"
-                className="w-5 h-5"
-              />
+              <img src="/svg/eye.svg" alt="Show password" className="w-5 h-5" />
             )}
           </button>
         }
@@ -136,15 +132,11 @@ const UserForm = ({ user, setUser, action, buttonAction }) => {
             {isConfirmPasswordVisible ? (
               <img
                 src="/svg/eye-slash.svg"
-                alt="Ocultar contraseña"
+                alt="Hide password"
                 className="w-5 h-5"
               />
             ) : (
-              <img
-                src="/svg/eye.svg"
-                alt="Mostrar contraseña"
-                className="w-5 h-5"
-              />
+              <img src="/svg/eye.svg" alt="Show password" className="w-5 h-5" />
             )}
           </button>
         }
