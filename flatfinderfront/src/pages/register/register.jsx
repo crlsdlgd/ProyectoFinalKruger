@@ -1,12 +1,15 @@
 import { useState } from "react";
 import UserForm from "../../components/user-form/userForm";
+import { UserService } from "../../services/userService";
 
 const Register = () => {
   const [user, setUser] = useState({});
 
-  const submitRegister = (e) => {
+  const submitRegister = async (e) => {
     e.preventDefault();
-    console.log("User:", user);
+    const userService = new UserService();
+    const response = await userService.saveUser(user);
+    console.log("response: ", response);
   };
 
   return (

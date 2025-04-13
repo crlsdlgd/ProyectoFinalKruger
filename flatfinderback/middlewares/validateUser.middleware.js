@@ -6,7 +6,7 @@ const validateUser = (req, res, next) => {
     return res.status(400).json({ message: "All fields are required." });
   }
   //Validacion de email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ message: "Invalid email format." });
   }

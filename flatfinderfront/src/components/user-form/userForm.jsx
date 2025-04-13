@@ -18,8 +18,8 @@ const UserForm = ({ user, setUser, action, buttonAction }) => {
   return (
     <form onSubmit={(e) => handleRegister(e)}>
       <Input
-        value={user.firstName}
-        onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+        value={user.firstname}
+        onChange={(e) => setUser({ ...user, firstname: e.target.value })}
         label="First Name"
         type="text"
         className="user-input"
@@ -34,8 +34,8 @@ const UserForm = ({ user, setUser, action, buttonAction }) => {
         }}
       />
       <Input
-        value={user.lastName}
-        onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+        value={user.lastname}
+        onChange={(e) => setUser({ ...user, lastname: e.target.value })}
         label="Last Name"
         type="text"
         className="user-input"
