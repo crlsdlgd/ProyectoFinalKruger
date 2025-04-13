@@ -1,11 +1,12 @@
+import { calendarToISOString } from "../utils/utils";
+
 export class UserService {
   constructor() {
     this.url = 'http://localhost:8080/user';
   }
 
   async saveUser(user) {
-    const { year, month, day } = user.birthdate;
-    user.birthdate = new Date(year, month - 1, day).toISOString();
+    user.birthdate = calendarToISOString(user.birthdate);
     console.log("Usuario Enviado", user)
     const response = await fetch(`${this.url}/`, {
       method: 'POST',

@@ -9,4 +9,9 @@ const calculateAge = (birthDate) => {
   return age;
 };
 
-export { calculateAge };
+const calendarToISOString = (date) => {
+  const { year, month, day } = date;
+  return new Date(year, month - 1, day).toISOString();
+};
+
+export { calculateAge, calendarToISOString };
