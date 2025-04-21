@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "a3c0b806-10d6-4176-846d-5e2a4e85ed62",
+		"name": "ProyectoFinalKruger",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21422484"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"Carlos\",\r\n    \"lastname\":\"Delgado\",\r\n    \"email\":\"carlos@gmail.com\",\r\n    \"password\":\"qwe.123\",\r\n    \"birthdate\":\"1992-08-07\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "flats",
+			"item": [
+				{
+					"name": "addFlat",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\": \"Quito\",\r\n    \"streetName\": \"Av Republica\",\r\n    \"streetNumber\": 328,\r\n    \"hasAC\": true,\r\n    \"yearBuilt\": 2000,\r\n    \"rentPrice\": 520.00,\r\n    \"dateAvailable\": \"2025-04-20\",\r\n    \"ownerId\": \"67fb1285ffc35acbe78d237e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/flat/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"flat",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateFlat",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"city\":\"Quito\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/flat/68027d40395710db4624662a",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"flat",
+								"68027d40395710db4624662a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllFlats",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/flat?yearBuilt[gte]=1999&rentPrice[gte]=500&page=1&limit=10&fields=city,streetName,streetNumber",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"flat"
+							],
+							"query": [
+								{
+									"key": "yearBuilt[gte]",
+									"value": "1999"
+								},
+								{
+									"key": "rentPrice[gte]",
+									"value": "500"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "fields",
+									"value": "city,streetName,streetNumber"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFlatById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/flat/68027d40395710db4624662a",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"flat",
+								"68027d40395710db4624662a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFlat",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/flat/68027d40395710db4624662a",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"flat",
+								"68027d40395710db4624662a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "messages",
+			"item": []
+		}
+	]
+}

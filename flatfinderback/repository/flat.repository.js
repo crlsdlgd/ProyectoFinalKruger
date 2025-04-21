@@ -6,22 +6,33 @@ const saveFlat = async (flatData) => {
 };
 
 const updateFlat = async (id, flat) => {
-  const flat = await Flat.findByIdAndUpdate(id, { ...flat, updatedAt: new Date() }, { new: true });
-  return flat;
+  const flatToUpdate = await Flat.findOneAndUpdate(
+    { _id: id, deletedAt: null },
+    { ...flat, updatedAt: new Date() },
+    { new: true }
+  );
+  return flatToUpdate;
 };
 
 const deleteFlat = async (id) => {
-  const flat = await Flat.findByIdAndUpdate(id, { deletedAt: new Date(), updatedAt: new Date() }, { new: true });
+  const flat = await Flat.findOneAndUpdate(
+    { _id: id, deletedAt: null },
+    { deletedAt: new Date(), updatedAt: new Date() },
+    { new: true }
+  );
   return flat;
 };
 
-const getAllFlats = async () => {
-  const flats = await Flat.find();
-  return flats;
+const getAllFlats = async (filters, selected, sort, skip, limit) => {
+  return await Flat.find({ ...filters, deletedAt: null })
+    .select(selected)
+    .sort(sort)
+    .skip(skip)
+    .limit(limit);
 };
 
 const getFlatById = async (id) => {
-  const flat = await Flat.findById(id);
+  const flat = await Flat.findOne({ _id: id, deletedAt: null });
   return flat;
 };
 

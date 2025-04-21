@@ -1,4 +1,10 @@
-import { createFlat, getFlatById as getFlatByIdService, getAllFlats as getAllFlatsService, updateFlat as updateFlatService, deleteFlat as deleteFlatService } from "../services/flat.service.js";
+import {
+  createFlat,
+  getFlatById as getFlatByIdService,
+  getAllFlats as getAllFlatsService,
+  updateFlat as updateFlatService,
+  deleteFlat as deleteFlatService,
+} from "../services/flat.service.js";
 
 const addFlat = async (req, res) => {
   try {
@@ -20,7 +26,7 @@ const getFlatById = async (req, res) => {
 
 const getAllFlats = async (req, res) => {
   try {
-    const flats = await getAllFlatsService();
+    const flats = await getAllFlatsService(req.query);
     res.status(200).json(flats);
   } catch (error) {
     res.status(400).json({ message: error.message });
