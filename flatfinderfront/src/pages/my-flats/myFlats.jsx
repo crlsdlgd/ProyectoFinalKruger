@@ -8,9 +8,9 @@ const MyFlats = () => {
       <div>
         <Header />
       </div>
-      <div>
+      <main>
         <p>Aqui va el contenido de my flats</p>
-      </div>
+      </main>
       <div>
         <Footer />
       </div>

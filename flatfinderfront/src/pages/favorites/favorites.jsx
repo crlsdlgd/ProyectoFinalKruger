@@ -8,14 +8,15 @@ const Favorites = () => {
       <div>
         <Header />
       </div>
-      <div>
+      <main>
         <p>Aqui va el contenido de favorites</p>
-      </div>
+      </main>
       <div>
         <Footer />
       </div>
     </div>
   )
-}
+};
+
 
 export default Favorites;

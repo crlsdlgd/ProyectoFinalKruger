@@ -8,9 +8,9 @@ const ViewUser = () => {
       <div>
         <Header />
       </div>
-      <div>
+      <main>
         <p>Aqui va el contenido de view user</p>
-      </div>
+      </main>
       <div>
         <Footer />
       </div>

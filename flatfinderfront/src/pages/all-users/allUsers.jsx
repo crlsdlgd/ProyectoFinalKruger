@@ -8,9 +8,9 @@ const AllUsers = () => {
       <div>
         <Header />
       </div>
-      <div>
+      <main>
         <p>Aqui va el contenido de all users</p>
-      </div>
+      </main>
       <div>
         <Footer />
       </div>

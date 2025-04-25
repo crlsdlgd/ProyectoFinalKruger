@@ -8,9 +8,9 @@ const EditUser = () => {
       <div>
         <Header />
       </div>
-      <div>
+      <main>
         <p>Aqui va el contenido de edit user</p>
-      </div>
+      </main>
       <div>
         <Footer />
       </div>

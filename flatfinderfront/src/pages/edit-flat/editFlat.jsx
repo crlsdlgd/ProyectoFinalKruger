@@ -8,9 +8,9 @@ const EditFlat = () => {
       <div>
         <Header />
       </div>
-      <div>
+      <main>
         <p>Aqui va el contenido de edit flat</p>
-      </div>
+      </main>
       <div>
         <Footer />
       </div>

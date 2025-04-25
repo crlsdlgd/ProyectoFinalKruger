@@ -8,9 +8,9 @@ const UpdatePassword = () => {
       <div>
         <Header />
       </div>
-      <div>
+      <main>
         <p>Aqui va el contenido de update password</p>
-      </div>
+      </main>
       <div>
         <Footer />
       </div>

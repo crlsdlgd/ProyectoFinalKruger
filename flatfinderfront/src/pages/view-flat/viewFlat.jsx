@@ -7,9 +7,9 @@ const ViewFlat = () => {
       <div>
         <Header />
       </div>
-      <div>
+      <main>
         <p>Aqui va el contenido de view flat</p>
-      </div>
+      </main>
       <div>
         <Footer />
       </div>
