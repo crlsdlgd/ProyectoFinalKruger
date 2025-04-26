@@ -1,13 +1,46 @@
 import { Input, Button } from "@heroui/react";
 import { useState } from "react";
 import "./login.css";
+import UserService from "../../services/UserService";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = (e) => {
+  // const [error, setError] = useState("");
+
+  const handleLogin = async (e) => {
     e.preventDefault();
+    // setError(""); // Reset error message
+
+    // try {
+    //   const response = await fetch("http://localhost:5000/api/login", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ email, password }),
+    //   });
+
+    //   if (!response.ok) {
+    //     throw new Error("Invalid email or password");
+    //   }
+        
+    //   const data = await response.json();
+    //   console.log("Login successful:", data);
+
+    //   // Save token or user data to localStorage or context
+    //   localStorage.setItem("token", data.token);
+
+    //   // Redirect to another page (e.g., dashboard)
+    //   window.location.href = "/home";
+    // } catch (err) {
+    //   setError(err.message);
+    // }
+
+    const user = UserService.loginUser(email, password);
   };
+  
 
   return (
     <main className="login-container">
