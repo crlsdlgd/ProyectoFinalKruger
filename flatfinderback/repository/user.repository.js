@@ -14,6 +14,7 @@ const loginUser = async (email , password) =>{
     return null;
   }
   return user;
-}
+};
+
 
 export { saveUser , loginUser };
