@@ -1,7 +1,7 @@
 import { Input, Button } from "@heroui/react";
 import { useState } from "react";
 import "./login.css";
-import UserService from "../../services/UserService";
+import { UserService } from "../../services/userService.js";
 
 import FavoriteButton from "../../components/favorite-button/favoriteButton";
 import ThemeButton from "../../components/theme-button/themeButton";
