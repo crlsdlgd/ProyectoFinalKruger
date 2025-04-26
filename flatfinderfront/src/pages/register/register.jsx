@@ -13,7 +13,7 @@ const Register = () => {
   };
 
   return (
-    <main>
+    <main className="dark:bg-slate-900">
       <div>
         <UserForm
           user={user}

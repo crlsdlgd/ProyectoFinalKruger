@@ -1,6 +1,8 @@
 import { Input, Button } from "@heroui/react";
 import { useState } from "react";
 import "./login.css";
+import FavoriteButton from "../../components/favorite-button/favoriteButton";
+import ThemeButton from "../../components/theme-button/themeButton";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +12,10 @@ const Login = () => {
   };
 
   return (
-    <main className="login-container">
+    <main className="login-container dark:bg-slate-900">
+      <div>
+        <ThemeButton />
+      </div>
       <section className="login-form-container">
         <form onSubmit={(e) => handleLogin(e)} className="login-form">
           <h3 className="login-title">Sign In</h3>
@@ -46,6 +51,7 @@ const Login = () => {
           </p>
         </form>
       </section>
+      {/* <FavoriteButton /> */}
     </main>
   );
 };

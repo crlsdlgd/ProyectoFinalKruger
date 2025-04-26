@@ -1,15 +1,16 @@
 // Componente de Header
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ThemeButton from "../theme-button/themeButton";
 
 const Header = () => {
   const [user, setUser] = useState(null);
-  const [theme, setTheme] = useState(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
-  });
+  // const [theme, setTheme] = useState(() => {
+  //   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  //     return "dark";
+  //   }
+  //   return "light";
+  // });
 
   // Simulación de llamada a la base de datos
   useEffect(() => {
@@ -27,14 +28,14 @@ const Header = () => {
     fetchUser();
   }, []);
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
+  // const toggleTheme = () => {
+  //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  // };
 
-  useEffect(() => {
-    document.body.classList.remove("light", "dark"); // o cualquier tema que estés usando
-    document.body.classList.add(theme);
-  }, [theme]);
+  // useEffect(() => {
+  //   document.body.classList.remove("light", "dark"); // o cualquier tema que estés usando
+  //   document.body.classList.add(theme);
+  // }, [theme]);
 
   return (
     <header>
@@ -62,7 +63,7 @@ const Header = () => {
           </ul>
         </nav>
         <div>
-          <button onClick={toggleTheme} className="border border-black">
+          {/* <button onClick={toggleTheme} className="border border-black">
             {theme === "light" ? (
               <img
                 src="/svg/moon-solid.svg"
@@ -76,7 +77,8 @@ const Header = () => {
                 className="w-5 h-5"
               />
             )}
-          </button>
+          </button> */}
+          <ThemeButton />
         </div>
         <div className="user-info">
           {user ? <p>Welcome, {user.name}!</p> : <p>Loading user...</p>}

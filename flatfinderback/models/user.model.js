@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
   resetPasswordToken: { type: String },
   resetPasswordExpire: { type: Date },
   createdAt: { type: Date, default: Date.now() },
+  updatedAt: { type: Date, default: Date.now() },
   deletedAt: { type: Date, default: null },
 });
 
@@ -44,6 +45,15 @@ userSchema.post("find", function (users, next) {
   });
   next();
 });
+
+// userSchema.methods.toJSON = function () {
+//   const userObject = this.toObject();
+//   delete userObject.password;
+//   delete userObject.createdAt;
+//   delete userObject.updatedAt;
+//   delete userObject.deletedAt;
+//   return userObject;
+// };
 
 userSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
