@@ -40,7 +40,7 @@ const Login = () => {
     //   setError(err.message);
     // }
 
-    const user = UserService.loginUser(email, password);
+    // const user = UserService.loginUser(email, password);
   };
 
   return (

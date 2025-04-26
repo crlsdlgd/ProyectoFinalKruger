@@ -1,4 +1,4 @@
-import { createUser } from "../services/user.service.js";
+import { createUser , loginUser as loginUserService} from "../services/user.service.js";
 
 const saveUser = async (req, res) => {
   try {
@@ -9,4 +9,17 @@ const saveUser = async (req, res) => {
   }
 };
 
-export { saveUser };
+const loginUser = async (req,res) =>{
+  try{
+    const userLogged = await loginUserService(req.body.email, req.body.password);
+    if(!userLogged){
+      return res.status(401).json({message: "Invalid email or password"});
+    }
+    res.status(200).json(userLogged);
+  } catch(error){
+    res.status(401).json({message:"Invalid email or password" });
+
+  }
+}
+
+export { saveUser , loginUser };
