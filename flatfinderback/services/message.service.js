@@ -4,15 +4,15 @@ import {
   addMessage as addMessageRepository,
 } from "../repository/message.repository.js";
 
-const getAllMessages = async (flatId) => {
-  return await getAllMessagesRepository(flatId);
+const getAllMessages = async (flatId, userId) => {
+  return await getAllMessagesRepository(flatId, userId);
 };
 
 const getUserMessages = async (flatId, senderId) => {
   return await getUserMessagesRepository(flatId, senderId);
 };
 
-const addMessage = async (flatId, content) => {
-  return await addMessageRepository(flatId, content);
+const addMessage = async (flatId, content, senderId) => {
+  return await addMessageRepository(flatId, content, senderId);
 };
 export { getAllMessages, getUserMessages, addMessage };

@@ -6,9 +6,15 @@ import {
   getFlatById as getFlatByIdRepository,
 } from "../repository/flat.repository.js";
 
-const createFlat = async (flat) => await saveFlat(flat);
-const updateFlat = async (id, flat) => await updateFlatRepository(id, flat);
-const deleteFlat = async (id) => await deleteFlatRepository(id);
+const createFlat = async (flat, userId) => await saveFlat(flat, userId);
+const updateFlat = async (flatId, flat, userId) => {
+  await verifyOwnership(flatId, userId);
+  return await updateFlatRepository(flatId, flat);
+};
+const deleteFlat = async (flatId, userId) => {
+  await verifyOwnership(flatId, userId);
+  return await deleteFlatRepository(flatId);
+};
 const getAllFlats = async (query) => {
   try {
     let queryObject = { ...query };
@@ -51,6 +57,25 @@ const getAllFlats = async (query) => {
     return { error: error.message };
   }
 };
-const getFlatById = async (id) => await getFlatByIdRepository(id);
+const getFlatById = async (flatId) => await getFlatByIdRepository(flatId);
+
+const verifyOwnership = async (flatId, userId) => {
+  const flat = await getFlatByIdRepository(flatId);
+
+  if (!flat) {
+    const error = new Error("Flat not found");
+    error.status = 404;
+    throw error;
+  }
+
+  if (flat.ownerId != userId) {
+    const error = new Error("You are not authorized to perform this action");
+    error.status = 403;
+    throw error;
+  }
+
+  return flat;
+};
+
 
 export { createFlat, updateFlat, deleteFlat, getAllFlats, getFlatById };

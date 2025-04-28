@@ -16,16 +16,19 @@ import { authenticationMiddleware } from "../middlewares/authentication.middlewa
 
 const router = express.Router();
 
-//FLATS ROUTES
-router.get("/", getAllFlats);
-router.patch("/:id", updateFlat);
-router.delete("/:id", deleteFlat);
-router.post("/", addFlat);
-router.get("/:id", authenticationMiddleware,getFlatById);
+router.use(authenticationMiddleware);
 
-//MESSAGES ROUTES
+// MESSAGES ROUTES
 router.get("/:flatId/messages", getAllMessages);
 router.get("/:flatId/messages/:senderId", getUserMessages);
 router.post("/:flatId/messages", addMessage);
+
+// FLATS ROUTES
+router.get("/", getAllFlats);
+router.post("/", addFlat);
+router.get("/:flatId", getFlatById);
+router.patch("/:flatId", updateFlat);
+router.delete("/:flatId", deleteFlat);
+
 
 export default router;

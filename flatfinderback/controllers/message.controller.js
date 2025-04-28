@@ -6,7 +6,7 @@ import {
 
 const getAllMessages = async (req, res) => {
   try {
-    const messages = await getAllMessagesService(req.params.flatId);
+    const messages = await getAllMessagesService(req.params.flatId, req.user.id);
     res.status(200).json(messages);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -27,7 +27,7 @@ const getUserMessages = async (req, res) => {
 
 const addMessage = async (req, res) => {
   try {
-    const message = await addMessageService(req.params.flatId, req.body);
+    const message = await addMessageService(req.params.flatId, req.body, req.user.id);
     res.status(201).json(message);
   } catch (error) {
     res.status(400).json({ message: error.message });
