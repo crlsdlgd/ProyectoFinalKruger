@@ -35,7 +35,7 @@ const getAllFlats = async (req, res) => {
 
 const updateFlat = async (req, res) => {
   try {
-    const flat = await updateFlatService(req.params.flatId, req.body, req.user.id);
+    const flat = await updateFlatService(req.params.flatId, req.body);
     res.status(200).json(flat);
   } catch (error) {
     res.status(error.status || 500).json({ message: error.message || "Server error" });
@@ -44,7 +44,7 @@ const updateFlat = async (req, res) => {
 
 const deleteFlat = async (req, res) => {
   try {
-    const flat = await deleteFlatService(req.params.flatId, req.user.id);
+    const flat = await deleteFlatService(req.params.flatId);
     res.status(200).json(flat);
   } catch (error) {
     res.status(error.status || 500).json({ message: error.message || "Server error" });

@@ -6,21 +6,19 @@ const saveFlat = async (flatData, ownerId) => {
 };
 
 const updateFlat = async (flatId, flat) => {
-  const flatToUpdate = await Flat.findOneAndUpdate(
+  return await Flat.findOneAndUpdate(
     { _id: flatId, deletedAt: null },
     { ...flat, updatedAt: new Date() },
     { new: true }
   );
-  return flatToUpdate;
 };
 
 const deleteFlat = async (flatId) => {
-  const flat = await Flat.findOneAndUpdate(
+  return await Flat.findOneAndUpdate(
     { _id: flatId, deletedAt: null },
     { deletedAt: new Date(), updatedAt: new Date() },
     { new: true }
   );
-  return flat;
 };
 
 const getAllFlats = async (filters, selected, sort, skip, limit) => {
@@ -32,8 +30,11 @@ const getAllFlats = async (filters, selected, sort, skip, limit) => {
 };
 
 const getFlatById = async (flatId) => {
-  const flat = await Flat.findOne({ _id: flatId, deletedAt: null });
-  return flat;
+  return await Flat.findOne({ _id: flatId, deletedAt: null });
 };
 
-export { saveFlat, updateFlat, deleteFlat, getAllFlats, getFlatById };
+const getFlatOwnerId = async (flatId) => {
+  return await Flat.findOne({ _id: flatId, deletedAt: null }).select("ownerId -_id").lean();
+};
+
+export { saveFlat, updateFlat, deleteFlat, getAllFlats, getFlatById, getFlatOwnerId };

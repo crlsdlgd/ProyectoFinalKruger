@@ -12,6 +12,7 @@ import {
   addMessage,
 } from "../controllers/message.controller.js";
 import { authenticationMiddleware } from "../middlewares/authentication.middleware.js";
+import { authorizeFlatOwner } from "../middlewares/authorizeFlatOwner.middleware.js";
 
 
 const router = express.Router();
@@ -27,8 +28,8 @@ router.post("/:flatId/messages", addMessage);
 router.get("/", getAllFlats);
 router.post("/", addFlat);
 router.get("/:flatId", getFlatById);
-router.patch("/:flatId", updateFlat);
-router.delete("/:flatId", deleteFlat);
+router.patch("/:flatId", authorizeFlatOwner, updateFlat);
+router.delete("/:flatId", authorizeFlatOwner, deleteFlat);
 
 
 export default router;
