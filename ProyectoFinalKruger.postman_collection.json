@@ -35,6 +35,33 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"galo@gmail.com\",\r\n    \"password\":\"qwe.123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -45,13 +72,20 @@
 					"name": "addFlat",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmIxMjg1ZmZjMzVhY2JlNzhkMjM3ZSIsImVtYWlsIjoiY3Jsc2RsZ2QxOTkzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5hbWUiOiJDYXJsb3MiLCJpYXQiOjE3NDU4NTgxMjUsImV4cCI6MTc0NTg1ODcyNX0.yvyRFcRoc0qK1MTfT9qORM9AkZ3F5apIODKYkydan08",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"city\": \"Quito\",\r\n    \"streetName\": \"Av Republica\",\r\n    \"streetNumber\": 328,\r\n    \"hasAC\": true,\r\n    \"yearBuilt\": 2000,\r\n    \"rentPrice\": 520.00,\r\n    \"dateAvailable\": \"2025-04-20\",\r\n    \"ownerId\": \"67fb1285ffc35acbe78d237e\"\r\n}",
+							"raw": "{\r\n    \"city\": \"Quito\",\r\n    \"streetName\": \"Av Republica\",\r\n    \"streetNumber\": 328,\r\n    \"hasAC\": true,\r\n    \"yearBuilt\": 2000,\r\n    \"rentPrice\": 520.00,\r\n    \"dateAvailable\": \"2025-04-20\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -75,13 +109,20 @@
 					"name": "updateFlat",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmIxMjg1ZmZjMzVhY2JlNzhkMjM3ZSIsImVtYWlsIjoiY3Jsc2RsZ2QxOTkzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5hbWUiOiJDYXJsb3MiLCJpYXQiOjE3NDU4OTAyODQsImV4cCI6MTc0NTg5MDg4NH0.saPdjXfW8maDr15DNV6oka77_ETGOakTdmnisddpsWI",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"city\":\"Quito\"\r\n}",
+							"raw": "{\r\n    \"city\":\"Loja\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -105,7 +146,14 @@
 					"name": "getAllFlats",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmIxMjg1ZmZjMzVhY2JlNzhkMjM3ZSIsImVtYWlsIjoiY3Jsc2RsZ2QxOTkzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5hbWUiOiJDYXJsb3MiLCJpYXQiOjE3NDU4NTgxMjUsImV4cCI6MTc0NTg1ODcyNX0.yvyRFcRoc0qK1MTfT9qORM9AkZ3F5apIODKYkydan08",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -145,12 +193,31 @@
 				},
 				{
 					"name": "getFlatById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmIxMjg1ZmZjMzVhY2JlNzhkMjM3ZSIsImVtYWlsIjoiY3Jsc2RsZ2QxOTkzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5hbWUiOiJDYXJsb3MiLCJpYXQiOjE3NDU4OTQwOTIsImV4cCI6MTc0NTg5NDY5Mn0.FOl2_ZHVUetbjU7AwH1DGFp5iCwv0saHN8Zn6VwuW2g",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{host}}/flat/68027d40395710db4624662a",
 							"host": [
@@ -168,7 +235,14 @@
 					"name": "deleteFlat",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmIxMjg1ZmZjMzVhY2JlNzhkMjM3ZSIsImVtYWlsIjoiY3Jsc2RsZ2QxOTkzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5hbWUiOiJDYXJsb3MiLCJpYXQiOjE3NDU4NTgxMjUsImV4cCI6MTc0NTg1ODcyNX0.yvyRFcRoc0qK1MTfT9qORM9AkZ3F5apIODKYkydan08",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],
@@ -189,7 +263,129 @@
 		},
 		{
 			"name": "messages",
-			"item": []
+			"item": [
+				{
+					"name": "addMessage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmIxMjg1ZmZjMzVhY2JlNzhkMjM3ZSIsImVtYWlsIjoiY3Jsc2RsZ2QxOTkzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5hbWUiOiJDYXJsb3MiLCJpYXQiOjE3NDU4OTEzNDgsImV4cCI6MTc0NTg5MTk0OH0.z4oDupQ-Io6ncLK1dzi0UO-6D6I0XRd-CwCUb-Q1EiM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Hola a todos este es un mensaje de prueba 123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/flat/68027d40395710db4624662a/messages",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"flat",
+								"68027d40395710db4624662a",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllMessages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmIxMjg1ZmZjMzVhY2JlNzhkMjM3ZSIsImVtYWlsIjoiY3Jsc2RsZ2QxOTkzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5hbWUiOiJDYXJsb3MiLCJpYXQiOjE3NDU4OTQwOTIsImV4cCI6MTc0NTg5NDY5Mn0.FOl2_ZHVUetbjU7AwH1DGFp5iCwv0saHN8Zn6VwuW2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/flat/68027d40395710db4624662a/messages",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"flat",
+								"68027d40395710db4624662a",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserMessages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmIxMjg1ZmZjMzVhY2JlNzhkMjM3ZSIsImVtYWlsIjoiY3Jsc2RsZ2QxOTkzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5hbWUiOiJDYXJsb3MiLCJpYXQiOjE3NDU4OTQwOTIsImV4cCI6MTc0NTg5NDY5Mn0.FOl2_ZHVUetbjU7AwH1DGFp5iCwv0saHN8Zn6VwuW2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/flat/68027d40395710db4624662a/messages/67fb1285ffc35acbe78d237e",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"flat",
+								"68027d40395710db4624662a",
+								"messages",
+								"67fb1285ffc35acbe78d237e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
