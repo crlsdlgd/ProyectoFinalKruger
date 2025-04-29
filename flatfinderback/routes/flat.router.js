@@ -13,23 +13,22 @@ import {
 } from "../controllers/message.controller.js";
 import { authenticationMiddleware } from "../middlewares/authentication.middleware.js";
 import { authorizeFlatOwner } from "../middlewares/authorizeFlatOwner.middleware.js";
-
+import { sanitizeBody } from "../middlewares/sanitizeBody.middleware.js";
 
 const router = express.Router();
 
 router.use(authenticationMiddleware);
 
 // MESSAGES ROUTES
-router.get("/:flatId/messages", getAllMessages);
+router.get("/:flatId/messages", authorizeFlatOwner, getAllMessages);
 router.get("/:flatId/messages/:senderId", getUserMessages);
-router.post("/:flatId/messages", addMessage);
+router.post("/:flatId/messages", sanitizeBody, addMessage);
 
 // FLATS ROUTES
 router.get("/", getAllFlats);
 router.post("/", addFlat);
 router.get("/:flatId", getFlatById);
-router.patch("/:flatId", authorizeFlatOwner, updateFlat);
-router.delete("/:flatId", authorizeFlatOwner, deleteFlat);
-
+router.patch("/:flatId", authorizeFlatOwner, sanitizeBody, updateFlat);
+router.delete("/:flatId", authorizeFlatOwner, sanitizeBody, deleteFlat);
 
 export default router;
