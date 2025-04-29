@@ -1,6 +1,6 @@
 import { Message } from "../models/message.model.js";
 
-const getAllMessages = async (flatId, userId) => {
+const getAllMessages = async (flatId) => {
   return await Message.find({ flatId, deletedAt: null });
 };
 const getUserMessages = async (flatId, senderId) => {

@@ -13,6 +13,7 @@ import {
 } from "../controllers/message.controller.js";
 import { authenticationMiddleware } from "../middlewares/authentication.middleware.js";
 import { authorizeFlatOwner } from "../middlewares/authorizeFlatOwner.middleware.js";
+import { validateUserIsSender } from "../middlewares/validateUserIsSender.middleware.js";
 import { sanitizeBody } from "../middlewares/sanitizeBody.middleware.js";
 
 const router = express.Router();
@@ -21,7 +22,7 @@ router.use(authenticationMiddleware);
 
 // MESSAGES ROUTES
 router.get("/:flatId/messages", authorizeFlatOwner, getAllMessages);
-router.get("/:flatId/messages/:senderId", getUserMessages);
+router.get("/:flatId/messages/:senderId", validateUserIsSender, getUserMessages);
 router.post("/:flatId/messages", sanitizeBody, addMessage);
 
 // FLATS ROUTES
