@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstname\":\"Carlos\",\r\n    \"lastname\":\"Delgado\",\r\n    \"email\":\"carlos@gmail.com\",\r\n    \"password\":\"qwe.123\",\r\n    \"birthdate\":\"1992-08-07\"\r\n}",
+							"raw": "{\r\n    \"firstname\":\"Alberto\",\r\n    \"lastname\":\"Delgado\",\r\n    \"email\":\"alberto@gmail.com\",\r\n    \"password\":\"qwe.123\",\r\n    \"birthdate\":\"1992-08-07\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -43,7 +43,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"galo@gmail.com\",\r\n    \"password\":\"qwe.123\"\r\n}",
+							"raw": "{\r\n    \"email\":\"emilio@gmail.com\",\r\n    \"password\":\"qwe.123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -58,6 +58,166 @@
 							"path": [
 								"user",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllUsers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmRhYTUzODUyYTY5Y2I1ZTZjMzA3NCIsImVtYWlsIjoiZW1pbGlvQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwibmFtZSI6IkVtaWxpbyIsImlhdCI6MTc0NjQwMTk2NywiZXhwIjoxNzQ2NDAyNTY3fQ.kmmZ-vSykUaKv2sky0Avppoj9UYt1UEiuBxQbuZfCs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/?page=1&limit=10&fields=firstname,lastname,birthdate&sort=lastname",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "fields",
+									"value": "firstname,lastname,birthdate"
+								},
+								{
+									"key": "sort",
+									"value": "lastname"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/user/67fdaa53852a69cb5e6c3074",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"67fdaa53852a69cb5e6c3074"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmRhYTUzODUyYTY5Y2I1ZTZjMzA3NCIsImVtYWlsIjoiZW1pbGlvQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwibmFtZSI6IkVtaWxpbyIsImlhdCI6MTc0NjQwMTk2NywiZXhwIjoxNzQ2NDAyNTY3fQ.kmmZ-vSykUaKv2sky0Avppoj9UYt1UEiuBxQbuZfCs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lastname\": \"Rodriguez\",\r\n    \"password\": \"asd.123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/67fdaa53852a69cb5e6c3074",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"67fdaa53852a69cb5e6c3074"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmRhYTUzODUyYTY5Y2I1ZTZjMzA3NCIsImVtYWlsIjoiZW1pbGlvQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwibmFtZSI6IkVtaWxpbyIsImlhdCI6MTc0NjQwMTk2NywiZXhwIjoxNzQ2NDAyNTY3fQ.kmmZ-vSykUaKv2sky0Avppoj9UYt1UEiuBxQbuZfCs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lastname\": \"Del Hierro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/67fdaa53852a69cb5e6c3074",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"67fdaa53852a69cb5e6c3074"
 							]
 						}
 					},
@@ -150,7 +310,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmIxMjg1ZmZjMzVhY2JlNzhkMjM3ZSIsImVtYWlsIjoiY3Jsc2RsZ2QxOTkzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5hbWUiOiJDYXJsb3MiLCJpYXQiOjE3NDU4NTgxMjUsImV4cCI6MTc0NTg1ODcyNX0.yvyRFcRoc0qK1MTfT9qORM9AkZ3F5apIODKYkydan08",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZmIxMjg1ZmZjMzVhY2JlNzhkMjM3ZSIsImVtYWlsIjoiY3Jsc2RsZ2QxOTkzQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsIm5hbWUiOiJDYXJsb3MiLCJpYXQiOjE3NDYzOTc4OTksImV4cCI6MTc0NjM5ODQ5OX0.sqDHl4ZRoph-5k5SKlKIvY1ZFzoXe7oifVsZ_Ds5Lpc",
 									"type": "string"
 								}
 							]
@@ -158,7 +318,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/flat?yearBuilt[gte]=1999&rentPrice[gte]=500&page=1&limit=10&fields=city,streetName,streetNumber",
+							"raw": "{{host}}/flat?yearBuilt[gte]=1999&rentPrice[gte]=500&sort=city&page=1&limit=10&fields=city,streetName,streetNumber",
 							"host": [
 								"{{host}}"
 							],
@@ -173,6 +333,10 @@
 								{
 									"key": "rentPrice[gte]",
 									"value": "500"
+								},
+								{
+									"key": "sort",
+									"value": "city"
 								},
 								{
 									"key": "page",
