@@ -1,21 +1,21 @@
 import {
-  getAllMessages as getAllMessagesService,
-  getUserMessages as getUserMessagesService,
+  getMessagesByFlat as getMessagesByFlatService,
+  getMessagesByFlatAndSender as getMessagesByFlatAndSenderService,
   addMessage as addMessageService,
 } from "../services/message.service.js";
 
-const getAllMessages = async (req, res) => {
+const getMessagesByFlat = async (req, res) => {
   try {
-    const messages = await getAllMessagesService(req.params.flatId);
+    const messages = await getMessagesByFlatService(req.params.flatId);
     res.status(200).json(messages);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-const getUserMessages = async (req, res) => {
+const getMessagesByFlatAndSender = async (req, res) => {
   try {
-    const messages = await getUserMessagesService(
+    const messages = await getMessagesByFlatAndSenderService(
       req.params.flatId,
       req.params.senderId
     );
@@ -34,4 +34,4 @@ const addMessage = async (req, res) => {
   }
 };
 
-export { getAllMessages, getUserMessages, addMessage };
+export { getMessagesByFlat, getMessagesByFlatAndSender, addMessage };

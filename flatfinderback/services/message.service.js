@@ -1,18 +1,18 @@
 import {
-  getAllMessages as getAllMessagesRepository,
-  getUserMessages as getUserMessagesRepository,
+  getMessagesByFlat as getMessagesByFlatRepository,
+  getMessagesByFlatAndSender as getMessagesByFlatAndSenderRepository,
   addMessage as addMessageRepository,
 } from "../repository/message.repository.js";
 
-const getAllMessages = async (flatId) => {
-  return await getAllMessagesRepository(flatId);
+const getMessagesByFlat = async (flatId) => {
+  return await getMessagesByFlatRepository(flatId);
 };
 
-const getUserMessages = async (flatId, senderId) => {
-  return await getUserMessagesRepository(flatId, senderId);
+const getMessagesByFlatAndSender = async (flatId, senderId) => {
+  return await getMessagesByFlatAndSenderRepository(flatId, senderId);
 };
 
 const addMessage = async (flatId, content, senderId) => {
   return await addMessageRepository(flatId, content, senderId);
 };
-export { getAllMessages, getUserMessages, addMessage };
+export { getMessagesByFlat, getMessagesByFlatAndSender, addMessage };

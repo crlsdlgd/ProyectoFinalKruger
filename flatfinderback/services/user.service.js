@@ -9,7 +9,7 @@ const loginUser = async (email, password) => {
     if (!user) {
         return null;
     }
-    const token = jwt.sign({ id: user._id, email: user.email, role: user.role, name: user.firstname }, configs.JWT_SECRET, { expiresIn: "10min" });
+    const token = jwt.sign({ id: user._id, email: user.email, role: user.role, name: user.firstname }, configs.JWT_SECRET, { expiresIn: "1h" });
     return { token };
 };
 

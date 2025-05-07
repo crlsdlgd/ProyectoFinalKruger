@@ -39,7 +39,7 @@ const updateUser = async (userId, user) => {
 const deleteUser = async (userId) => {
   return await User.findOneAndUpdate(
     { _id: userId, deletedAt: null },
-    { deletedAt: new Date() },
+    { deletedAt: new Date(), updatedAt: new Date() },
     { new: true }
   ).select("-password");
 };

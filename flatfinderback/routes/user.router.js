@@ -9,7 +9,7 @@ const router = express.Router();
 router.post("/", sanitizeBody, validateUserData, saveUser);
 router.get("/", authenticationMiddleware, authorizationByRoles(["admin"]), getAllUsers);
 router.post("/login", sanitizeBody, loginUser);
-router.get("/:id", getUserById);
+router.get("/:id", authenticationMiddleware, getUserById);
 router.patch("/:id", authenticationMiddleware, authorizationByRolesOrAuthor(["admin"]), sanitizeBody, removeFieldFromBody("password"), validateUserData, updateUser);
 router.delete("/:id", authenticationMiddleware, authorizationByRolesOrAuthor(["admin"]), deleteUser);
 
