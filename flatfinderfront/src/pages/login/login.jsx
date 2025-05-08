@@ -1,53 +1,37 @@
-import { Input, Button } from "@heroui/react";
+import { Input, Button, addToast } from "@heroui/react";
 import { useState } from "react";
 import "./login.css";
 import { UserService } from "../../services/userService.js";
 
-import FavoriteButton from "../../components/favorite-button/favoriteButton";
-import ThemeButton from "../../components/theme-button/themeButton";
+// import FavoriteButton from "../../components/favorite-button/favoriteButton";
+// import ThemeButton from "../../components/theme-button/themeButton";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   // const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // setError(""); // Reset error message
-
-    // try {
-    //   const response = await fetch("http://localhost:5000/api/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ email, password }),
-    //   });
-
-    //   if (!response.ok) {
-    //     throw new Error("Invalid email or password");
-    //   }
-
-    //   const data = await response.json();
-    //   console.log("Login successful:", data);
-
-    //   // Save token or user data to localStorage or context
-    //   localStorage.setItem("token", data.token);
-
-    //   // Redirect to another page (e.g., dashboard)
-    //   window.location.href = "/home";
-    // } catch (err) {
-    //   setError(err.message);
-    // }
-
-    // const user = UserService.loginUser(email, password);
+    const userService = new UserService();
+    const token = await userService.loginUser(email, password);
+    if (token) {
+      navigate("/home");
+    } else {
+      addToast({
+        title: "Login failed",
+        description: "Invalid email or password",
+        type: "error",
+        variant: "bordered",
+        color: "danger",
+      });
+    }
   };
 
   return (
     <main className="login-container dark:bg-slate-900">
-      <div>
-        <ThemeButton />
-      </div>
       <section className="login-form-container">
         <form onSubmit={(e) => handleLogin(e)} className="login-form">
           <h3 className="login-title">Sign In</h3>
@@ -83,7 +67,6 @@ const Login = () => {
           </p>
         </form>
       </section>
-      {/* <FavoriteButton /> */}
     </main>
   );
 };

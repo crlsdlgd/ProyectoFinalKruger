@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input, Button, DatePicker } from "@heroui/react";
+import { Input, Button, DatePicker, Form } from "@heroui/react";
 import { calculateAge } from "../../utils/utils";
 
 const UserForm = ({ user, setUser, action, buttonAction }) => {
@@ -16,7 +16,7 @@ const UserForm = ({ user, setUser, action, buttonAction }) => {
   };
 
   return (
-    <form onSubmit={(e) => handleRegister(e)}>
+    <Form onSubmit={(e) => handleRegister(e)}>
       <Input
         value={user.firstname}
         onChange={(e) => setUser({ ...user, firstname: e.target.value })}
@@ -145,7 +145,7 @@ const UserForm = ({ user, setUser, action, buttonAction }) => {
         }}
       />
       <Button type="submit">{buttonAction}</Button>
-    </form>
+    </Form>
   );
 };
 

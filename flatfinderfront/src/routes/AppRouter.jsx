@@ -32,7 +32,7 @@ const AppRouter = () => {
       <Route path="/new-flat" element={<NewFlat />} />
       <Route path="/edit-flat/:flatId" element={<EditFlat />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default AppRouter
+export default AppRouter;

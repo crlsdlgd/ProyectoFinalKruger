@@ -1,4 +1,5 @@
 import { calendarToISOString } from "../utils/utils";
+import { LocalStorageService } from "./localStorageService";
 
 export class UserService {
   constructor() {
@@ -7,7 +8,6 @@ export class UserService {
 
   async saveUser(user) {
     user.birthdate = calendarToISOString(user.birthdate);
-    console.log("Usuario Enviado", user)
     const response = await fetch(`${this.url}/`, {
       method: 'POST',
       headers: {
@@ -15,11 +15,15 @@ export class UserService {
       },
       body: JSON.stringify(user)
     });
-    return response.json();
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || "Unknown error");
+    }
+    return data;
   }
 
   async getUser(id) {
-    const response = await fetch(`${this.url}/${id}`,{
+    const response = await fetch(`${this.url}/${id}`, {
       method: `GET`,
       headers: {
         'Content-Type': 'application/json'
@@ -36,7 +40,7 @@ export class UserService {
         'Content-Type': 'application/json'
       }
     });
-    return response.json(); 
+    return response.json();
   }
   async updateUser(id, user) {
     user.birthdate = calendarToISOString(user.birthdate);
@@ -45,7 +49,7 @@ export class UserService {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user)  
+      body: JSON.stringify(user)
     })
   }
   async deleteUser(id) {
@@ -67,17 +71,22 @@ export class UserService {
   //   return response.json();
   // }
   async loginUser(email, password) {
-    console.log("Usuario Enviado", email, password)
-    // const response = await fetch(`${this.url}/login`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({ email, password })
-    // });
-    // return response.json();
+    const response = await fetch(`${this.url}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
+    if (!response.ok) {
+      return null;
+    }
+    const data = await response.json();
+    const localStorageService = new LocalStorageService();
+    localStorageService.saveToken(data.token);
+    return data;
   }
- 
+
   async logoutUser() {
     const response = await fetch(`${this.url}/logout`, {
       method: 'POST',
