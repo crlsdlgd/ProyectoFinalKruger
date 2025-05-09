@@ -12,7 +12,7 @@ export class LocalStorageService {
     return token ? JSON.parse(token) : null;
   }
 
-  removetoken() {
+  removeToken() {
     this.localStorage.removeItem('token');
   }
 }

@@ -34,26 +34,23 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-// userSchema.post("save", function (user, next) {
-//   user.password = undefined;
-//   next();
-// });
+userSchema.post("save", function (user, next) {
+  user.password = undefined;
+  next();
+});
 
-// userSchema.post("find", function (users, next) {
-//   users.forEach(user => {
-//     user.password = undefined;
-//   });
-//   next();
-// });
+userSchema.post("find", function (users, next) {
+  users.forEach(user => {
+    user.password = undefined;
+  });
+  next();
+});
 
-// userSchema.methods.toJSON = function () {
-//   const userObject = this.toObject();
-//   delete userObject.password;
-//   delete userObject.createdAt;
-//   delete userObject.updatedAt;
-//   delete userObject.deletedAt;
-//   return userObject;
-// };
+userSchema.post("findOneAndUpdate", function (user, next) {
+  user.password = undefined;
+  next();
+});
+
 
 userSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);

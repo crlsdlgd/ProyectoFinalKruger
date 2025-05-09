@@ -1,41 +1,11 @@
 // Componente de Header
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ThemeButton from "../theme-button/themeButton";
+import useAuthenticatedUser from "../../hooks/useAuthenticatedUser";
 
 const Header = () => {
-  const [user, setUser] = useState(null);
-  // const [theme, setTheme] = useState(() => {
-  //   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  //     return "dark";
-  //   }
-  //   return "light";
-  // });
-
-  // Simulación de llamada a la base de datos
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        // Reemplaza esta URL con tu endpoint real
-        const response = await fetch("https://api.example.com/user");
-        const data = await response.json();
-        setUser(data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-  // const toggleTheme = () => {
-  //   setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  // };
-
-  // useEffect(() => {
-  //   document.body.classList.remove("light", "dark"); // o cualquier tema que estés usando
-  //   document.body.classList.add(theme);
-  // }, [theme]);
+  const user = useAuthenticatedUser();
 
   return (
     <header>
@@ -63,21 +33,6 @@ const Header = () => {
           </ul>
         </nav>
         <div>
-          {/* <button onClick={toggleTheme} className="border border-black">
-            {theme === "light" ? (
-              <img
-                src="/svg/moon-solid.svg"
-                alt="Dark Mode"
-                className="w-5 h-5"
-              />
-            ) : (
-              <img
-                src="/svg/sun-solid.svg"
-                alt="Light Mode"
-                className="w-5 h-5"
-              />
-            )}
-          </button> */}
           <ThemeButton />
         </div>
         <div className="user-info">
