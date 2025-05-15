@@ -15,6 +15,34 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --matisse-50: #f1f8fe;
+  --matisse-100: #e3eefb;
+  --matisse-200: #c0def7;
+  --matisse-300: #89c4f0;
+  --matisse-400: #4aa5e6;
+  --matisse-500: #2389d4;
+  --matisse-600: #156eb7;
+  --matisse-700: #125792;
+  --matisse-800: #134a79;
+  --matisse-900: #153f65;
+  --matisse-950: #0e2843;
+
+  --background-light: #f4f4f5;
+  --text-light: #0E0E11;
+  --background-dark: #0E0E11;
+  --text-dark: #f4f4f5;
+
+}
+
+.light {
+  background-color: var(--background-light);
+  color: var(--text-light);
+}
+
+.dark {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
 }
 
 a {
@@ -30,9 +58,9 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  /* place-items: center; */
   min-height: 100vh;
   min-width: 100vw;
+  /* background-color: var(--bg-light); */
 }
 
 h1 {
@@ -71,6 +99,6 @@ button:focus-visible {
     background-color: transparent;
   }
   /* h1, h2, h3, h4, h5, h6, p {
-    color: #1a1a1a;
+    color: var(--text-light)
   } */
 }

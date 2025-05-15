@@ -1,5 +1,5 @@
 // tailwind.config.js
-import { heroui } from "@heroui/react";
+import { heroui, lightLayout } from "@heroui/react";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -12,18 +12,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: "#00BCD4",     // Claro
-          dark: "#26A69A",        // Oscuro
+        'matisse': {
+          '50': '#f1f8fe',
+          '100': '#e3eefb',
+          '200': '#c0def7',
+          '300': '#89c4f0',
+          '400': '#4aa5e6',
+          '500': '#2389d4',
+          '600': '#156eb7',
+          '700': '#125792',
+          '800': '#134a79',
+          '900': '#153f65',
+          '950': '#0e2843',
         },
-        background: {
-          DEFAULT: "#ffffff",
-          dark: "#121212",
-        },
-        text: {
-          DEFAULT: "#000000",
-          dark: "#ffffff",
-        },
+        'bglight': '#f4f4f5',
+        'bgdark': '#0E0E11',
+        'txtdark': '#f4f4f5',
+        'txtlight': '#0E0E11',
+
       },
     },
   },

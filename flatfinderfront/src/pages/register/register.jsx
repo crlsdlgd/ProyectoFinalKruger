@@ -3,6 +3,8 @@ import UserForm from "../../components/user-form/userForm";
 import { UserService } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
 import { addToast } from "@heroui/react";
+import "./register.css";
+import ThemeButton from "../../components/theme-button/themeButton";
 
 const Register = () => {
   const [user, setUser] = useState({});
@@ -55,7 +57,10 @@ const Register = () => {
   };
 
   return (
-    <main className="dark:bg-slate-900">
+    <main className="register-container dark:bg-bgdark bg-bglight transition-colors duration-500">
+      <div>
+        <ThemeButton />
+      </div>
       <div>
         <UserForm
           user={user}

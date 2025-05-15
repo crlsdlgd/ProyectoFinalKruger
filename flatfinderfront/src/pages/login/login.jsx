@@ -4,7 +4,7 @@ import "./login.css";
 import { UserService } from "../../services/userService.js";
 
 // import FavoriteButton from "../../components/favorite-button/favoriteButton";
-// import ThemeButton from "../../components/theme-button/themeButton";
+import ThemeButton from "../../components/theme-button/themeButton";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -31,10 +31,15 @@ const Login = () => {
   };
 
   return (
-    <main className="login-container dark:bg-slate-900">
+    <main className="login-container dark:bg-bgdark bg-bglight transition-colors duration-500">
+      <div>
+        <ThemeButton />
+      </div>
       <section className="login-form-container">
         <form onSubmit={(e) => handleLogin(e)} className="login-form">
-          <h3 className="login-title">Sign In</h3>
+          <h3 className="login-title text-txtlight dark:text-txtdark transition-colors duration-500">
+            Sign In
+          </h3>
           <div>
             <Input
               label="Email"
@@ -62,7 +67,7 @@ const Login = () => {
               LOGIN
             </Button>
           </div>
-          <p className="login-link">
+          <p className="login-link text-txtlight dark:text-txtdark transition-colors duration-500">
             Don't have an account? <a href="/register">Sign Up</a>
           </p>
         </form>
