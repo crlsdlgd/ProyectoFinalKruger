@@ -68,6 +68,9 @@ const Register = () => {
           action={submitRegister}
           buttonAction={"REGISTER"}
         />
+        <p className="login-link text-txtlight dark:text-txtdark transition-colors duration-500">
+          Already have an account? <a href="/login">Sign in</a>
+        </p>
       </div>
     </main>
   );

@@ -11,7 +11,7 @@ const Header = () => {
     <header>
       <div className="header-container">
         <div className="logo">
-          <h1>FlatFinder</h1>
+          <h3 className="dark:text-txtdark text-txtlight">FlatFinder</h3>
         </div>
         <nav>
           <ul>
@@ -36,7 +36,13 @@ const Header = () => {
           <ThemeButton />
         </div>
         <div className="user-info">
-          {user ? <p>Welcome, {user.name}!</p> : <p>Loading user...</p>}
+          {user ? (
+            <p className="dark:text-txtdark text-txtlight">
+              Welcome, {user.name}!
+            </p>
+          ) : (
+            <p className="dark:text-txtdark text-txtlight">Loading user...</p>
+          )}
         </div>
       </div>
     </header>

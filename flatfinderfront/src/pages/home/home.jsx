@@ -5,7 +5,7 @@ import FlatFilter from "../../components/flat-filter/flatFilter";
 import FlatList from "../../components/flat-list/flatList";
 const Home = () => {
   return (
-    <div className="page-wrapper dark:bg-slate-900">
+    <div className="page-wrapper dark:bg-bgdark bg-bglight">
       <div>
         <Header />
       </div>
