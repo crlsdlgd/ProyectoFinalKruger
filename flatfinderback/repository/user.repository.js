@@ -17,7 +17,12 @@ const loginUser = async (email, password) => {
 };
 
 const getUserById = async (userId) => {
-  return await User.findOne({ _id: userId, deletedAt: null }).select("-password");
+  const user = await User.findOne({ _id: userId, deletedAt: null });
+  if (!user) return null;
+
+  // Elimina el campo password manualmente
+  user.password = undefined;
+  return user;
 };
 
 const getAllUsers = async (filters, selected, sort, skip, limit) => {
@@ -29,19 +34,33 @@ const getAllUsers = async (filters, selected, sort, skip, limit) => {
 };
 
 const updateUser = async (userId, user) => {
-  return await User.findOneAndUpdate(
+  const updatedUser = await User.findOneAndUpdate(
     { _id: userId, deletedAt: null },
     { ...user, updatedAt: new Date() },
     { new: true }
-  ).select("-password");
+  );
+  if (!updatedUser) return null;
+
+  // Elimina el campo password manualmente
+  updatedUser.password = undefined;
+  return updatedUser;
 };
 
 const deleteUser = async (userId) => {
-  return await User.findOneAndUpdate(
+  const user = await User.findOneAndUpdate(
     { _id: userId, deletedAt: null },
     { deletedAt: new Date(), updatedAt: new Date() },
     { new: true }
-  ).select("-password");
+  );
+  console.log("asdasdasd");
+  if (!user) {
+    console.log("User not found");
+    return null;
+  };
+
+  // Elimina el campo password manualmente
+  user.password = undefined;
+  return user;
 };
 
 export { saveUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser };

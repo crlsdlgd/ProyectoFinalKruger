@@ -46,10 +46,10 @@ userSchema.post("find", function (users, next) {
   next();
 });
 
-userSchema.post("findOneAndUpdate", function (user, next) {
-  user.password = undefined;
-  next();
-});
+// userSchema.post("findOneAndUpdate", function (user, next) {
+//   user.password = undefined;
+//   next();
+// });
 
 
 userSchema.methods.matchPassword = async function (password) {
