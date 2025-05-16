@@ -102,3 +102,10 @@ button:focus-visible {
     color: var(--text-light)
   } */
 }
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-light) !important;
+}
+
+.dark input:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-dark) !important;
+}

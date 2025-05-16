@@ -57,7 +57,7 @@ const Register = () => {
   };
 
   return (
-    <main className="register-container dark:bg-bgdark bg-bglight transition-colors duration-500">
+    <main className="register-container dark:bg-bgdark bg-bglight">
       <div>
         <ThemeButton />
       </div>
@@ -68,7 +68,7 @@ const Register = () => {
           action={submitRegister}
           buttonAction={"REGISTER"}
         />
-        <p className="login-link text-txtlight dark:text-txtdark transition-colors duration-500">
+        <p className="login-link text-txtlight dark:text-txtdark">
           Already have an account? <a href="/login">Sign in</a>
         </p>
       </div>
