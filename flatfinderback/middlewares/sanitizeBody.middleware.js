@@ -10,7 +10,18 @@ export const sanitizeBody = (req, res, next) => {
   next();
 };
 
-export const removeFieldFromBody = (field) => (req, res, next) => {
-  delete req.body[field];
+export const removeFieldsFromBody = (fields) => (req, res, next) => {
+  fields.forEach((field) => {
+    if (field in req.body) {
+      delete req.body[field];
+    }
+  });
   next();
 };
+
+export const protectRoleField = (req, res, next) => {
+  if (req.body.role && req.user.role !== "admin") {
+    delete req.body.role;
+  }
+  next();
+}
