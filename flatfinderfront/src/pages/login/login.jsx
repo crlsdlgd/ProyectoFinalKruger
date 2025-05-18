@@ -19,7 +19,7 @@ const Login = () => {
     const userService = new UserService();
     const token = await userService.loginUser(email, password);
     if (token) {
-      navigate("/home");
+      navigate("/");
     } else {
       addToast({
         title: "Login failed",

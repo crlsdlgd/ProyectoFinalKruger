@@ -16,7 +16,6 @@ import EditFlat from "../pages/edit-flat/editFlat";
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/all-users" element={<AllUsers />} />
@@ -25,7 +24,7 @@ const AppRouter = () => {
       <Route path="/update-password" element={<UpdatePassword />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password/:token" element={<ResetPassword />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/my-flats" element={<MyFlats />} />
       <Route path="/view-flat/:flatId" element={<ViewFlat />} />
