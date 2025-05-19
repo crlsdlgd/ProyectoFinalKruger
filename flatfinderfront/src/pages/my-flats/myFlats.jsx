@@ -1,12 +1,12 @@
-import Header from '../../components/header/header';
-import Footer from '../../components/footer/footer';
-import '../pages.css';
+import Footer from "../../components/footer/footer";
+import "../pages.css";
+import { NavBar } from "../../components/navbar/navbar";
 
 const MyFlats = () => {
   return (
     <div className="page-wrapper">
       <div>
-        <Header />
+        <NavBar />
       </div>
       <main>
         <p>Aqui va el contenido de my flats</p>
@@ -15,7 +15,7 @@ const MyFlats = () => {
         <Footer />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default MyFlats;

@@ -1,12 +1,12 @@
-import Header from '../../components/header/header';
-import Footer from '../../components/footer/footer';
-import '../pages.css';
+import Footer from "../../components/footer/footer";
+import "../pages.css";
+import { NavBar } from "../../components/navbar/navbar";
 
 const Favorites = () => {
   return (
     <div className="page-wrapper">
       <div>
-        <Header />
+        <NavBar />
       </div>
       <main>
         <p>Aqui va el contenido de favorites</p>
@@ -15,8 +15,7 @@ const Favorites = () => {
         <Footer />
       </div>
     </div>
-  )
+  );
 };
-
 
 export default Favorites;
