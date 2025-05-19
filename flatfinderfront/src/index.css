@@ -28,7 +28,7 @@
   --matisse-900: #153f65;
   --matisse-950: #0e2843;
 
-  --background-light: #f4f4f5;
+  --background-light: #ffffff;
   --text-light: #0E0E11;
   --background-dark: #0E0E11;
   --text-dark: #f4f4f5;
@@ -101,4 +101,11 @@ button:focus-visible {
   /* h1, h2, h3, h4, h5, h6, p {
     color: var(--text-light)
   } */
+}
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-light) !important;
+}
+
+.dark input:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-dark) !important;
 }

@@ -19,7 +19,7 @@ const Login = () => {
     const userService = new UserService();
     const token = await userService.loginUser(email, password);
     if (token) {
-      navigate("/home");
+      navigate("/");
     } else {
       addToast({
         title: "Login failed",
@@ -32,20 +32,20 @@ const Login = () => {
   };
 
   return (
-    <main className="login-container dark:bg-bgdark bg-bglight transition-colors duration-500">
+    <main className="login-container dark:bg-bgdark bg-bglight">
       <div>
         <ThemeButton />
       </div>
       <section className="login-form-container">
         <form onSubmit={(e) => handleLogin(e)} className="login-form">
-          <h3 className="login-title text-txtlight dark:text-txtdark transition-colors duration-500">
+          <h3 className="login-title text-txtlight dark:text-txtdark">
             Sign In
           </h3>
           <div>
             <Input
               label="Email"
               type="email"
-              className="login-input"
+              className="login-input text-txtlight dark:text-txtdark"
               isRequired
               variant="underlined"
               placeholder="Enter your email"
@@ -56,7 +56,7 @@ const Login = () => {
             <Input
               label="Password"
               type={isPasswordVisible ? "text" : "password"}
-              className="login-input"
+              className="login-input text-txtlight dark:text-txtdark"
               isRequired
               variant="underlined"
               placeholder="Enter your password"
@@ -120,7 +120,7 @@ const Login = () => {
               LOGIN
             </Button>
           </div>
-          <p className="login-link text-txtlight dark:text-txtdark transition-colors duration-500">
+          <p className="login-link text-txtlight dark:text-txtdark">
             Don't have an account? <a href="/register">Sign Up</a>
           </p>
         </form>

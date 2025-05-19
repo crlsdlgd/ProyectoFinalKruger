@@ -2,14 +2,14 @@ import Footer from "../../components/footer/footer";
 import "../pages.css";
 import { NavBar } from "../../components/navbar/navbar";
 
-const UpdatePassword = () => {
+const Profile = () => {
   return (
     <div className="page-wrapper">
       <div>
         <NavBar />
       </div>
       <main>
-        <p>Aqui va el contenido de update password</p>
+        <p>Aqui va el contenido de view user</p>
       </main>
       <div>
         <Footer />
@@ -18,4 +18,4 @@ const UpdatePassword = () => {
   );
 };
 
-export default UpdatePassword;
+export default Profile;

@@ -15,6 +15,7 @@ import { authenticationMiddleware } from "../middlewares/authentication.middlewa
 import { authorizeFlatOwner } from "../middlewares/authorizeFlatOwner.middleware.js";
 import { validateUserIsSender } from "../middlewares/validateUserIsSender.middleware.js";
 import { sanitizeBody } from "../middlewares/sanitizeBody.middleware.js";
+import { validateFlatData } from "../middlewares/validateFlatData.middleware.js"
 
 const router = express.Router();
 
@@ -27,9 +28,9 @@ router.post("/:flatId/messages", sanitizeBody, addMessage);
 
 // FLATS ROUTES
 router.get("/", getAllFlats);
-router.post("/", addFlat);
+router.post("/", sanitizeBody, validateFlatData, addFlat);
 router.get("/:flatId", getFlatById);
-router.patch("/:flatId", authorizeFlatOwner, sanitizeBody, updateFlat);
-router.delete("/:flatId", authorizeFlatOwner, sanitizeBody, deleteFlat);
+router.patch("/:flatId", authorizeFlatOwner, sanitizeBody, validateFlatData, updateFlat);
+router.delete("/:flatId", authorizeFlatOwner, deleteFlat);
 
 export default router;

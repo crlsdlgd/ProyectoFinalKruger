@@ -25,7 +25,7 @@ export default {
           '900': '#153f65',
           '950': '#0e2843',
         },
-        'bglight': '#f4f4f5',
+        'bglight': '#ffffff',
         'bgdark': '#0E0E11',
         'txtdark': '#f4f4f5',
         'txtlight': '#0E0E11',

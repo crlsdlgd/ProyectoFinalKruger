@@ -1,12 +1,12 @@
-import Header from '../../components/header/header';
-import Footer from '../../components/footer/footer';
-import '../pages.css';
+import Footer from "../../components/footer/footer";
+import "../pages.css";
+import { NavBar } from "../../components/navbar/navbar";
 
 const EditFlat = () => {
   return (
     <div className="page-wrapper">
       <div>
-        <Header />
+        <NavBar />
       </div>
       <main>
         <p>Aqui va el contenido de edit flat</p>
@@ -15,7 +15,7 @@ const EditFlat = () => {
         <Footer />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default EditFlat;

@@ -27,7 +27,7 @@ const ThemeButton = () => {
       <Button
         type="button"
         onPress={toggleTheme}
-        className="border-slate-400 min-w-5 m-0 p-0 rounded-full w-10"
+        className="min-w-5 m-0 p-0 rounded-full w-10 bg-transparent"
       >
         {theme === "light" ? (
           // aqui va la imagen de luna en con src pues por defecto es de color negro (LUNA OSCURO)
