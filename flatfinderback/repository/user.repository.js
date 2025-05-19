@@ -52,7 +52,7 @@ const deleteUser = async (userId) => {
     { deletedAt: new Date(), updatedAt: new Date() },
     { new: true }
   );
-  console.log("asdasdasd");
+  
   if (!user) {
     console.log("User not found");
     return null;
