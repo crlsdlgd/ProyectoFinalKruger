@@ -3,7 +3,7 @@ import "../pages.css";
 import { NavBar } from "../../components/navbar/navbar";
 const ViewFlat = () => {
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper dark:bg-bgdark bg-bglight">
       <div>
         <NavBar />
       </div>

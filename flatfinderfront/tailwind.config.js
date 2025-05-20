@@ -29,7 +29,6 @@ export default {
         'bgdark': '#0E0E11',
         'txtdark': '#f4f4f5',
         'txtlight': '#0E0E11',
-
       },
     },
   },

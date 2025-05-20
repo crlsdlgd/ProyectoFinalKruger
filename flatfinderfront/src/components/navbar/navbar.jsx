@@ -121,7 +121,7 @@ export const NavBar = () => {
             <Avatar
               isBordered
               as="button"
-              className="transition-transform"
+              className="transition-transform min-w-8"
               color="secondary"
               name={user?.name}
               size="sm"

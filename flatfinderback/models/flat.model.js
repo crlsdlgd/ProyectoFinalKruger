@@ -4,6 +4,7 @@ const flatSchema = new mongoose.Schema({
   city: { type: String, minlength: [2, "City must be at least 2 characters long"], required: [true, "city is required"] },
   streetName: { type: String, minlength: [2, "Street Name must be at least 2 characters long"], required: [true, "Street name is required"] },
   streetNumber: { type: Number, min: [0, "Street number must be greater than 0"], required: [true, "Street number is required"] },
+  areaSize: { type: Number, min: [0, "Area size must be greater than 0"], required: [true, "Area size is required"] },
   hasAC: { type: Boolean, required: [true, "has AC is required"] },
   yearBuilt: { type: Number, min: [1950, "Year built must be greater than 1950"], required: [true, "Year built is required"] },
   rentPrice: { type: Number, min: [0, "Rent price must be greater than 0"], required: [true, "Rent price is required"] },
