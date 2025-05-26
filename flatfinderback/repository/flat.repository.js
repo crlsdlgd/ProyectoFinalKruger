@@ -37,4 +37,9 @@ const getFlatOwnerId = async (flatId) => {
   return await Flat.findOne({ _id: flatId, deletedAt: null }).select("ownerId -_id").lean();
 };
 
-export { saveFlat, updateFlat, deleteFlat, getAllFlats, getFlatById, getFlatOwnerId };
+const getFlatsCities = async () => {
+  const cities = await Flat.find({ deletedAt: null }).distinct("city");
+  return cities;
+};
+
+export { saveFlat, updateFlat, deleteFlat, getAllFlats, getFlatById, getFlatOwnerId, getFlatsCities };

@@ -5,6 +5,7 @@ import {
   getAllFlats,
   updateFlat,
   deleteFlat,
+  getFlatsCities,
 } from "../controllers/flat.controller.js";
 import {
   getMessagesByFlat,
@@ -27,6 +28,7 @@ router.get("/:flatId/messages/:senderId", validateUserIsSender, getMessagesByFla
 router.post("/:flatId/messages", sanitizeBody, addMessage);
 
 // FLATS ROUTES
+router.get("/cities", getFlatsCities);
 router.get("/", getAllFlats);
 router.post("/", sanitizeBody, validateFlatData, addFlat);
 router.get("/:flatId", getFlatById);

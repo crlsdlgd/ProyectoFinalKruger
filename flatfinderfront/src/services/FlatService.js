@@ -30,18 +30,29 @@ export class FlatService {
   //   return response.json();
   // }
 
-  async getAllFlats() {
-    //esta funcion envia el token al backend para que lo valide y devuelva los flats
+  async getAllFlats(filters) {
     const localStorageService = new LocalStorageService();
     const token = localStorageService.getToken();
-    const response = await fetch(`${this.url}/`, {
+    const response = await fetch(`${this.url}/${filters}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
     });
-    console.log("RESPONSE", response);
+    return response.json();
+  }
+
+  async getFlatCities() {
+    const localStorageService = new LocalStorageService();
+    const token = localStorageService.getToken();
+    const response = await fetch(`${this.url}/cities`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
     return response.json();
   }
 }

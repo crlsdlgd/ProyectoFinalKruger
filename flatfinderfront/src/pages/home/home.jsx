@@ -7,21 +7,31 @@ import { useEffect, useState } from "react";
 import { FlatService } from "../../services/FlatService";
 const Home = () => {
   const [flats, setFlats] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingFlats, setLoadingFlats] = useState(true);
+  const [loadingCities, setLoadingCities] = useState(true);
+  const [filters, setFilters] = useState("");
+  const [cities, setCities] = useState(["Madrid", "Barcelona"]);
 
   useEffect(() => {
-    loadFlats();
+    loadFlats(filters);
+  }, [filters]);
+
+  useEffect(() => {
+    loadFlatsCities();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("Flats loaded:", flats);
-  // }, [flats]);
-
-  const loadFlats = async () => {
+  const loadFlats = async (filters) => {
     const flatService = new FlatService();
-    const data = await flatService.getAllFlats();
+    const data = await flatService.getAllFlats(filters);
     setFlats(data);
-    setLoading(false);
+    setLoadingFlats(false);
+  };
+
+  const loadFlatsCities = async () => {
+    const flatService = new FlatService();
+    const data = await flatService.getFlatCities();
+    setCities(data);
+    setLoadingCities(false);
   };
 
   return (
@@ -31,10 +41,14 @@ const Home = () => {
       </div>
       <main>
         <section>
-          <FlatFilter />
+          {loadingCities ? (
+            <p>Loading cities...</p>
+          ) : (
+            <FlatFilter cities={cities} setFilters={setFilters} />
+          )}
         </section>
         <section>
-          {loading ? <p>Loading flats...</p> : <FlatList flats={flats} />}
+          {loadingFlats ? <p>Loading flats...</p> : <FlatList flats={flats} />}
         </section>
       </main>
       <div>

@@ -27,7 +27,7 @@ export const NavBar = () => {
     { name: "Home", href: "/" },
     { name: "My Flats", href: "/my-flats" },
     { name: "Favorites", href: "/favorites" },
-    { name: "Users", href: "/users" },
+    { name: "Users", href: "/all-users" },
   ];
 
   return (

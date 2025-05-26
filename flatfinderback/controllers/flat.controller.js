@@ -4,6 +4,7 @@ import {
   getAllFlats as getAllFlatsService,
   updateFlat as updateFlatService,
   deleteFlat as deleteFlatService,
+  getFlatsCities as getFlatsCitiesService,
 } from "../services/flat.service.js";
 
 const addFlat = async (req, res) => {
@@ -51,4 +52,13 @@ const deleteFlat = async (req, res) => {
   }
 };
 
-export { addFlat, getFlatById, getAllFlats, updateFlat, deleteFlat };
+const getFlatsCities = async (req, res) => {
+  try {
+    const cities = await getFlatsCitiesService();
+    res.status(200).json(cities);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export { addFlat, getFlatById, getAllFlats, updateFlat, deleteFlat, getFlatsCities };
