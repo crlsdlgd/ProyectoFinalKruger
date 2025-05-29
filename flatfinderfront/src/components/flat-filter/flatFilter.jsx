@@ -1,6 +1,8 @@
 import { Select, SelectItem, Input, Button } from "@heroui/react";
 import { useState } from "react";
 import "./flatFilter.css";
+import { ArrowUpIcon } from "../icons/arrowUpIcon";
+import { ArrowDownIcon } from "../icons/arrowDownIcon";
 const FlatFilter = ({ cities, setFilters }) => {
   const [selectedCity, setSelectedCity] = useState("");
   const [minAreaFilter, setMinAreaFilter] = useState("");
@@ -127,9 +129,60 @@ const FlatFilter = ({ cities, setFilters }) => {
               />
             </div>
           </div>
+          <div className="flat-filter-sort">
+            <label className="text-txtlight dark:text-txtdark">Sort by</label>
+            <div>
+              <div className="sort-select">
+                <Select
+                  label="Sort by"
+                  placeholder="Select sort option"
+                  selectedKeys={sortBy ? [sortBy] : []}
+                  onChange={(value) => setSortBy(value)}
+                >
+                  <SelectItem
+                    value="city"
+                    className="text-txtlight dark:text-txtdark"
+                  >
+                    City
+                  </SelectItem>
+                  <SelectItem
+                    value="areaSize"
+                    className="text-txtlight dark:text-txtdark"
+                  >
+                    Area Size
+                  </SelectItem>
+                  <SelectItem
+                    value="rentPrice"
+                    className="text-txtlight dark:text-txtdark"
+                  >
+                    Rent Price
+                  </SelectItem>
+                </Select>
+              </div>
+              <div className="sort-order-toggle">
+                <Button
+                  variant="faded"
+                  className="min-w-5 m-0 p-0 w-10"
+                  onPress={() => setAscDesc(ascDesc === "asc" ? "desc" : "asc")}
+                >
+                  {ascDesc === "asc" ? <ArrowUpIcon /> : <ArrowDownIcon />}
+                </Button>
+              </div>
+            </div>
+          </div>
           <div className="flat-filter-buttons">
-            <Button type="submit">Apply Filters</Button>
-            <Button type="button" onPress={() => resetFilters()}>
+            <Button
+              type="submit"
+              variant="solid"
+              className="text-txtlight dark:text-txtdark"
+            >
+              Apply Filters
+            </Button>
+            <Button
+              variant="bordered"
+              className="text-txtlight dark:text-txtdark"
+              onPress={resetFilters}
+            >
               Reset Filters
             </Button>
           </div>

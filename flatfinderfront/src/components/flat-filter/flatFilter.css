@@ -8,6 +8,7 @@
 .flat-filter-city, 
 .flat-filter-area,
 .flat-filter-rent,
+.flat-filter-sort,
 .flat-filter-buttons {
   border: 1px solid #ccc;
   padding: 0.5rem;
@@ -20,12 +21,33 @@
   gap: 0.5rem;
 }
 
-.flat-filter-buttons {
+.flat-filter-sort {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.5rem; */
+}
+
+.flat-filter-sort div{
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
 }
 
-.flat-filter-buttons button{
+.flat-filter-sort div button{
+  flex: 1;
+}
+
+.sort-select{
+  flex: 1;
+  /* padding: 0.5rem; */
+  border-radius: 8px;
+}
+
+.flat-filter-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.flat-filter-buttons button {
   flex: 1;
 }
