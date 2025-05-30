@@ -137,22 +137,25 @@ const FlatFilter = ({ cities, setFilters }) => {
                   label="Sort by"
                   placeholder="Select sort option"
                   selectedKeys={sortBy ? [sortBy] : []}
-                  onChange={(value) => setSortBy(value)}
+                  onChange={(e) => setSortBy(e.target.value)}
                 >
                   <SelectItem
                     value="city"
+                    key="city"
                     className="text-txtlight dark:text-txtdark"
                   >
                     City
                   </SelectItem>
                   <SelectItem
                     value="areaSize"
+                    key="areaSize"
                     className="text-txtlight dark:text-txtdark"
                   >
                     Area Size
                   </SelectItem>
                   <SelectItem
                     value="rentPrice"
+                    key="rentPrice"
                     className="text-txtlight dark:text-txtdark"
                   >
                     Rent Price
@@ -165,7 +168,7 @@ const FlatFilter = ({ cities, setFilters }) => {
                   className="min-w-5 m-0 p-0 w-10"
                   onPress={() => setAscDesc(ascDesc === "asc" ? "desc" : "asc")}
                 >
-                  {ascDesc === "asc" ? <ArrowUpIcon /> : <ArrowDownIcon />}
+                  {ascDesc === "asc" ? <ArrowDownIcon /> : <ArrowUpIcon />}
                 </Button>
               </div>
             </div>
