@@ -55,4 +55,17 @@ export class FlatService {
     });
     return response.json();
   }
+
+  async getTotalPages() {
+    const localStorageService = new LocalStorageService();
+    const token = localStorageService.getToken();
+    const response = await fetch(`${this.url}/total-pages`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response.json();
+  }
 }

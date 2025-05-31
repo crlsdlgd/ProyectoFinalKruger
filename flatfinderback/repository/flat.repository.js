@@ -42,4 +42,9 @@ const getFlatsCities = async () => {
   return cities;
 };
 
-export { saveFlat, updateFlat, deleteFlat, getAllFlats, getFlatById, getFlatOwnerId, getFlatsCities };
+const getTotalPages = async (limit = 10) => {
+  const totalFlats = await Flat.countDocuments({ deletedAt: null });
+  return Math.ceil(totalFlats / limit); // Assuming a default limit of 10 per page
+};
+
+export { saveFlat, updateFlat, deleteFlat, getAllFlats, getFlatById, getFlatOwnerId, getFlatsCities, getTotalPages };

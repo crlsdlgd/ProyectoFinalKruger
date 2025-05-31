@@ -5,12 +5,16 @@ import FlatList from "../../components/flat-list/flatList";
 import { NavBar } from "../../components/navbar/navbar";
 import { useEffect, useState } from "react";
 import { FlatService } from "../../services/FlatService";
+import { Pagination } from "@heroui/react";
 const Home = () => {
   const [flats, setFlats] = useState([]);
-  const [loadingFlats, setLoadingFlats] = useState(true);
-  const [loadingCities, setLoadingCities] = useState(true);
+  const [loadingFlats, setLoadingFlats] = useState(false);
+  const [loadingCities, setLoadingCities] = useState(false);
+  const [loadingTotalPages, setLoadingTotalPages] = useState(false);
   const [filters, setFilters] = useState("");
   const [cities, setCities] = useState(["Madrid", "Barcelona"]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     loadFlats(filters);
@@ -18,20 +22,32 @@ const Home = () => {
 
   useEffect(() => {
     loadFlatsCities();
+    loadTotalPages();
   }, []);
+
+  // useEffect(() => {
+  //   console.log(totalPages);
+  // }, [totalPages]);
 
   const loadFlats = async (filters) => {
     const flatService = new FlatService();
     const data = await flatService.getAllFlats(filters);
     setFlats(data);
-    setLoadingFlats(false);
+    setLoadingFlats(true);
+  };
+
+  const loadTotalPages = async () => {
+    const flatService = new FlatService();
+    const tPages = await flatService.getTotalPages();
+    setTotalPages(tPages);
+    setLoadingTotalPages(true);
   };
 
   const loadFlatsCities = async () => {
     const flatService = new FlatService();
     const data = await flatService.getFlatCities();
     setCities(data);
-    setLoadingCities(false);
+    setLoadingCities(true);
   };
 
   return (
@@ -41,14 +57,22 @@ const Home = () => {
       </div>
       <main>
         <section>
-          {loadingCities ? (
-            <p>Loading cities...</p>
-          ) : (
+          {loadingCities && (
             <FlatFilter cities={cities} setFilters={setFilters} />
           )}
         </section>
         <section>
-          {loadingFlats ? <p>Loading flats...</p> : <FlatList flats={flats} />}
+          {loadingFlats && <FlatList flats={flats} />}
+          {loadingTotalPages && (
+            <div className="flex justify-center mt-1">
+              <Pagination
+                currentPage={currentPage}
+                total={totalPages}
+                initialPage={1}
+                onChange={setCurrentPage}
+              />
+            </div>
+          )}
         </section>
       </main>
       <div>
