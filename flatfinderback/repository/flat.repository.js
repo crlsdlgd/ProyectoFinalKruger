@@ -22,11 +22,13 @@ const deleteFlat = async (flatId) => {
 };
 
 const getAllFlats = async (filters, selected, sort, skip, limit) => {
-  return await Flat.find({ ...filters, deletedAt: null })
+  const flats = await Flat.find({ ...filters, deletedAt: null })
     .select(selected)
     .sort(sort)
     .skip(skip)
     .limit(limit);
+  const pages = await Flat.countDocuments({ ...filters, deletedAt: null });
+  return { items: [...flats], pages: Math.ceil(pages / limit) };
 };
 
 const getFlatById = async (flatId) => {
@@ -42,9 +44,5 @@ const getFlatsCities = async () => {
   return cities;
 };
 
-const getTotalPages = async (limit = 10) => {
-  const totalFlats = await Flat.countDocuments({ deletedAt: null });
-  return Math.ceil(totalFlats / limit); // Assuming a default limit of 10 per page
-};
 
-export { saveFlat, updateFlat, deleteFlat, getAllFlats, getFlatById, getFlatOwnerId, getFlatsCities, getTotalPages };
+export { saveFlat, updateFlat, deleteFlat, getAllFlats, getFlatById, getFlatOwnerId, getFlatsCities };

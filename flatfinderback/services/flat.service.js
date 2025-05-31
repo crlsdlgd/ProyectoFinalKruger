@@ -5,14 +5,12 @@ import {
   getAllFlats as getAllFlatsRepository,
   getFlatById as getFlatByIdRepository,
   getFlatsCities as getFlatsCitiesRepository,
-  getTotalPages as getTotalPagesRepository
 } from "../repository/flat.repository.js";
 
 const createFlat = async (flat, userId) => await saveFlat(flat, userId);
 const updateFlat = async (flatId, flat) => await updateFlatRepository(flatId, flat);
 const deleteFlat = async (flatId) => await deleteFlatRepository(flatId);
 const getFlatsCities = async () => await getFlatsCitiesRepository();
-const getTotalPages = async () => await getTotalPagesRepository();
 
 const getAllFlats = async (query) => {
   let queryObject = { ...query };
@@ -54,4 +52,4 @@ const getAllFlats = async (query) => {
 };
 const getFlatById = async (flatId) => await getFlatByIdRepository(flatId);
 
-export { createFlat, updateFlat, deleteFlat, getAllFlats, getFlatById, getFlatsCities, getTotalPages };
+export { createFlat, updateFlat, deleteFlat, getAllFlats, getFlatById, getFlatsCities };

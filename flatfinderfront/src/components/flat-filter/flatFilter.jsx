@@ -3,13 +3,13 @@ import { useState } from "react";
 import "./flatFilter.css";
 import { ArrowUpIcon } from "../icons/arrowUpIcon";
 import { ArrowDownIcon } from "../icons/arrowDownIcon";
-const FlatFilter = ({ cities, setFilters }) => {
+const FlatFilter = ({ cities, setSearchFilters }) => {
   const [selectedCity, setSelectedCity] = useState("");
   const [minAreaFilter, setMinAreaFilter] = useState("");
   const [maxAreaFilter, setMaxAreaFilter] = useState("");
   const [minRentFilter, setMinRentFilter] = useState("");
   const [maxRentFilter, setMaxRentFilter] = useState("");
-  const [sortBy, setSortBy] = useState("city");
+  const [sortBy, setSortBy] = useState("rentPrice");
   const [ascDesc, setAscDesc] = useState("asc");
 
   const handleSubmit = (e) => {
@@ -37,14 +37,7 @@ const FlatFilter = ({ cities, setFilters }) => {
         filters += `sort=-${sortBy}`;
       }
     }
-    if (filters) {
-      filters = "?" + filters;
-    }
-    if (filters.endsWith("&")) {
-      filters = filters.slice(0, -1);
-    }
-    console.log("Filters submitted:", filters);
-    setFilters(filters);
+    setSearchFilters(filters);
   };
 
   const resetFilters = () => {
@@ -53,7 +46,7 @@ const FlatFilter = ({ cities, setFilters }) => {
     setMaxAreaFilter("");
     setMinRentFilter("");
     setMaxRentFilter("");
-    setSortBy("city");
+    setSortBy("rentPrice");
     setAscDesc("asc");
   };
   return (

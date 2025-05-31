@@ -5,42 +5,45 @@ import FlatList from "../../components/flat-list/flatList";
 import { NavBar } from "../../components/navbar/navbar";
 import { useEffect, useState } from "react";
 import { FlatService } from "../../services/FlatService";
-import { Pagination } from "@heroui/react";
+import { PaginationFilter } from "../../components/paginationFilter/paginationFilter";
+
 const Home = () => {
   const [flats, setFlats] = useState([]);
   const [loadingFlats, setLoadingFlats] = useState(false);
   const [loadingCities, setLoadingCities] = useState(false);
-  const [loadingTotalPages, setLoadingTotalPages] = useState(false);
-  const [filters, setFilters] = useState("");
-  const [cities, setCities] = useState(["Madrid", "Barcelona"]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [searchFilters, setSearchFilters] = useState(""); //Estos filtros estan encargados de filtar de busqueda (ciudad, area, precio, sort, acsDesc)
+  const [paginationFilter, setPaginationFilter] = useState(""); // Este filtro se encarga de la paginacion
+  const [globalFilters, setGlobalFilters] = useState(""); // Este filtro se encarga de adjuntar los filtros de paginacion y los filtros de busqueda
+  const [cities, setCities] = useState([]);
 
   useEffect(() => {
-    loadFlats(filters);
-  }, [filters]);
+    loadFlats(globalFilters);
+  }, [globalFilters]);
+
+  useEffect(() => {
+    let filter = searchFilters + paginationFilter;
+    if (filter) {
+      if (filter.startsWith("&")) {
+        filter = filter.slice(1);
+      }
+
+      if (filter.endsWith("&")) {
+        filter = filter.slice(0, -1);
+      }
+      filter = "?" + filter;
+    }
+    setGlobalFilters(filter);
+  }, [searchFilters, paginationFilter]);
 
   useEffect(() => {
     loadFlatsCities();
-    loadTotalPages();
   }, []);
-
-  // useEffect(() => {
-  //   console.log(totalPages);
-  // }, [totalPages]);
 
   const loadFlats = async (filters) => {
     const flatService = new FlatService();
     const data = await flatService.getAllFlats(filters);
     setFlats(data);
     setLoadingFlats(true);
-  };
-
-  const loadTotalPages = async () => {
-    const flatService = new FlatService();
-    const tPages = await flatService.getTotalPages();
-    setTotalPages(tPages);
-    setLoadingTotalPages(true);
   };
 
   const loadFlatsCities = async () => {
@@ -58,20 +61,20 @@ const Home = () => {
       <main>
         <section>
           {loadingCities && (
-            <FlatFilter cities={cities} setFilters={setFilters} />
+            <FlatFilter cities={cities} setSearchFilters={setSearchFilters} />
           )}
         </section>
         <section>
-          {loadingFlats && <FlatList flats={flats} />}
-          {loadingTotalPages && (
-            <div className="flex justify-center mt-1">
-              <Pagination
-                currentPage={currentPage}
-                total={totalPages}
-                initialPage={1}
-                onChange={setCurrentPage}
-              />
-            </div>
+          {loadingFlats && (
+            <>
+              <FlatList flats={flats.items} />
+              <div className="flex justify-center mt-1">
+                <PaginationFilter
+                  totalPages={flats.pages}
+                  setPaginationFilter={setPaginationFilter}
+                />
+              </div>
+            </>
           )}
         </section>
       </main>
