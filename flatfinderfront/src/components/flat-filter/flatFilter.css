@@ -1,3 +1,10 @@
+.flat-filter-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+} 
+
 .flat-filter-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -46,6 +53,8 @@
 .flat-filter-buttons {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
 }
 .flat-filter-buttons button {

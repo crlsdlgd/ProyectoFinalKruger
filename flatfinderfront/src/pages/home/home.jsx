@@ -11,14 +11,26 @@ const Home = () => {
   const [flats, setFlats] = useState([]);
   const [loadingFlats, setLoadingFlats] = useState(false);
   const [loadingCities, setLoadingCities] = useState(false);
+  const [loadingPages, setLoadingPages] = useState(false); // Este loading es para la paginacion
   const [searchFilters, setSearchFilters] = useState(""); //Estos filtros estan encargados de filtar de busqueda (ciudad, area, precio, sort, acsDesc)
   const [paginationFilter, setPaginationFilter] = useState(""); // Este filtro se encarga de la paginacion
   const [globalFilters, setGlobalFilters] = useState(""); // Este filtro se encarga de adjuntar los filtros de paginacion y los filtros de busqueda
   const [cities, setCities] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     loadFlats(globalFilters);
   }, [globalFilters]);
+
+  useEffect(() => {
+    setLoadingPages(true);
+    setCurrentPage(1);
+    setPaginationFilter("&page=1");
+    //Este Timeout obliga a desmontar y montar el componente FlatList para que se actualice correctamente
+    setTimeout(() => {
+      setLoadingPages(false);
+    }, 100);
+  }, [searchFilters]);
 
   useEffect(() => {
     let filter = searchFilters + paginationFilter;
@@ -61,19 +73,25 @@ const Home = () => {
       <main>
         <section>
           {loadingCities && (
-            <FlatFilter cities={cities} setSearchFilters={setSearchFilters} />
+            <div className="flex justify-center mt-1 w-full min-w-full">
+              <FlatFilter cities={cities} setSearchFilters={setSearchFilters} />
+            </div>
           )}
         </section>
         <section>
           {loadingFlats && (
             <>
               <FlatList flats={flats.items} />
-              <div className="flex justify-center mt-1">
-                <PaginationFilter
-                  totalPages={flats.pages}
-                  setPaginationFilter={setPaginationFilter}
-                />
-              </div>
+              {!loadingPages && (
+                <div className="flex justify-center mt-1">
+                  <PaginationFilter
+                    totalPages={flats.pages}
+                    setPaginationFilter={setPaginationFilter}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                  />
+                </div>
+              )}
             </>
           )}
         </section>

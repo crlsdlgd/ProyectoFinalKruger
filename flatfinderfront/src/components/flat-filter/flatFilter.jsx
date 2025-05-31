@@ -158,7 +158,7 @@ const FlatFilter = ({ cities, setSearchFilters }) => {
               <div className="sort-order-toggle">
                 <Button
                   variant="faded"
-                  className="min-w-5 m-0 p-0 w-10"
+                  className="min-w-5 m-0 p-0 w-10 size-14"
                   onPress={() => setAscDesc(ascDesc === "asc" ? "desc" : "asc")}
                 >
                   {ascDesc === "asc" ? <ArrowDownIcon /> : <ArrowUpIcon />}
@@ -170,6 +170,7 @@ const FlatFilter = ({ cities, setSearchFilters }) => {
             <Button
               type="submit"
               variant="solid"
+              color="primary"
               className="text-txtlight dark:text-txtdark"
             >
               Apply Filters
@@ -179,7 +180,7 @@ const FlatFilter = ({ cities, setSearchFilters }) => {
               className="text-txtlight dark:text-txtdark"
               onPress={resetFilters}
             >
-              Reset Filters
+              Clean Filters
             </Button>
           </div>
         </div>
