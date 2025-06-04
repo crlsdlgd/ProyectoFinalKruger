@@ -62,4 +62,5 @@ const deleteUser = async (userId) => {
   return user;
 };
 
+
 export { saveUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser };

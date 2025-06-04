@@ -157,6 +157,7 @@ export const NavBar = () => {
               className="text-txtlight dark:text-txtdark"
               onPress={() => {
                 localStorage.removeItem("token");
+                localStorage.removeItem("user");
                 window.location.href = "/login";
               }}
             >

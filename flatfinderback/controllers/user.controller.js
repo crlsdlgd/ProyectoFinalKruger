@@ -1,4 +1,4 @@
-import { createUser, loginUser as loginUserService, getUserById as getUserByIdService, getAllUsers as getAllUsersService, updateUser as updateUserService, deleteUser as deleteUserService } from "../services/user.service.js";
+import { createUser, loginUser as loginUserService, getUserById as getUserByIdService, getAllUsers as getAllUsersService, updateUser as updateUserService, deleteUser as deleteUserService, toggleFavorite as toggleFavoriteService } from "../services/user.service.js";
 
 const saveUser = async (req, res) => {
   try {
@@ -18,7 +18,6 @@ const loginUser = async (req, res) => {
     res.status(200).json(userLogged);
   } catch (error) {
     res.status(401).json({ message: "Invalid email or password" });
-
   }
 };
 
@@ -69,7 +68,14 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const toggleFavorite = async (req, res) => {
+  try {
+    const user = await toggleFavoriteService(req.user.id, req.params.flatId);
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
-
-export { saveUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser };
+export { saveUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser, toggleFavorite };

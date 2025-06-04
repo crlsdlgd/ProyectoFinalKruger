@@ -6,6 +6,8 @@ import { NavBar } from "../../components/navbar/navbar";
 import { useEffect, useState } from "react";
 import { FlatService } from "../../services/FlatService";
 import { PaginationFilter } from "../../components/paginationFilter/paginationFilter";
+import { UserService } from "../../services/userService";
+import { LocalStorageService } from "../../services/localStorageService";
 
 const Home = () => {
   const [flats, setFlats] = useState([]);
@@ -17,6 +19,14 @@ const Home = () => {
   const [globalFilters, setGlobalFilters] = useState(""); // Este filtro se encarga de adjuntar los filtros de paginacion y los filtros de busqueda
   const [cities, setCities] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [userLogged, setUserLogged] = useState(() => {
+    const user = localStorage.getItem("user");
+    return user ? JSON.parse(user) : null;
+  });
+
+  useEffect(() => {
+    console.log("User logged:", userLogged);
+  }, [userLogged]);
 
   useEffect(() => {
     loadFlats(globalFilters);
@@ -65,6 +75,20 @@ const Home = () => {
     setLoadingCities(true);
   };
 
+  const toggleFavorite = async (flatId) => {
+    const userService = new UserService();
+    try {
+      await userService.toggleFavorite(flatId);
+      // Optionally, you can refresh the flats list or update the UI accordingly
+      const localStorageService = new LocalStorageService();
+      const updateUser = localStorageService.getUser();
+      setUserLogged(updateUser);
+      loadFlats(globalFilters);
+    } catch (error) {
+      console.error("Error toggling favorite:", error);
+    }
+  };
+
   return (
     <div className="page-wrapper dark:bg-bgdark bg-bglight">
       <div>
@@ -81,7 +105,11 @@ const Home = () => {
         <section>
           {loadingFlats && (
             <>
-              <FlatList flats={flats.items} />
+              <FlatList
+                flats={flats.items}
+                toggleFavorite={toggleFavorite}
+                favoriteFlatIds={userLogged?.favoriteFlatIds}
+              />
               {!loadingPages && (
                 <div className="flex justify-center mt-1">
                   <PaginationFilter

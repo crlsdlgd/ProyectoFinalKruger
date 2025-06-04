@@ -25,6 +25,7 @@ const useAuthenticatedUser = () => {
         });
         setTimeout(() => {
           localStorageService.removeToken();
+          localStorageService.removeUser();
           window.location.href = "/login";
         }, 3000);
       }
@@ -40,6 +41,7 @@ const useAuthenticatedUser = () => {
       });
       setTimeout(() => {
         localStorageService.removeToken();
+        localStorageService.removeUser();
         window.location.href = "/login";
       }, 3000);
     }

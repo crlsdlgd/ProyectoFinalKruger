@@ -10,7 +10,13 @@ const loginUser = async (email, password) => {
         return null;
     }
     const token = jwt.sign({ id: user._id, email: user.email, role: user.role, name: user.firstname }, configs.JWT_SECRET, { expiresIn: "1h" });
-    return { token };
+    user.password = undefined; // Remove password from user object
+    user.__v = undefined; // Remove __v from user object
+    user.updatedAt = undefined; // Remove updatedAt from user object
+    user.createdAt = undefined; // Remove createdAt from user object
+    user.deletedAt = undefined; // Remove deletedAt from user object
+
+    return { token, user };
 };
 
 const getUserById = async (userId) => getUserByIdRepository(userId);
@@ -64,4 +70,17 @@ const getAllUsers = async (query) => {
     return users;
 };
 
-export { createUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser };
+const toggleFavorite = async (userId, flatId) => {
+    const user = await getUserByIdRepository(userId);
+    if (!user) return null;
+    const isFavorite = user.favoriteFlatIds.map(id => id.toString()).includes(flatId.toString());
+    if (isFavorite) {
+        user.favoriteFlatIds = user.favoriteFlatIds.filter((id) => id.toString() !== flatId.toString());
+    } else {
+        user.favoriteFlatIds.push(flatId);
+    }
+    await updateUserRepository(userId, user);
+    return user;
+};
+
+export { createUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser, toggleFavorite };

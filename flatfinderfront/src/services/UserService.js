@@ -84,6 +84,7 @@ export class UserService {
     const data = await response.json();
     const localStorageService = new LocalStorageService();
     localStorageService.saveToken(data.token);
+    localStorageService.saveUser(data.user);
     return data;
   }
 
@@ -105,6 +106,23 @@ export class UserService {
       }
     });
     return response.json();
+  }
+
+  async toggleFavorite(flatId) {
+    const localStorageService = new LocalStorageService();
+    const token = localStorageService.getToken();
+    const response = await fetch(`${this.url}/toggle-favorite/${flatId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    if (!response.ok) {
+      throw new Error("Failed to toggle favorite");
+    }
+    const data = await response.json();
+    localStorageService.saveUser(data);
   }
 };
 
