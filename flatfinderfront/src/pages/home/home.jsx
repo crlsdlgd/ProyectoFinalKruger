@@ -25,7 +25,10 @@ const Home = () => {
   });
 
   useEffect(() => {
-    console.log("User logged:", userLogged);
+    setLoadingFlats(false);
+    setTimeout(() => {
+      setLoadingFlats(true);
+    }, 10);
   }, [userLogged]);
 
   useEffect(() => {
