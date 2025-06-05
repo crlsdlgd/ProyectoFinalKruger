@@ -6,8 +6,7 @@ import { NavBar } from "../../components/navbar/navbar";
 import { useEffect, useState } from "react";
 import { FlatService } from "../../services/FlatService";
 import { PaginationFilter } from "../../components/paginationFilter/paginationFilter";
-import { UserService } from "../../services/userService";
-import { LocalStorageService } from "../../services/localStorageService";
+import { toggleFavorite } from "../../utils/utils";
 
 const Home = () => {
   const [flats, setFlats] = useState([]);
@@ -80,16 +79,8 @@ const Home = () => {
     setLoadingCities(true);
   };
 
-  const toggleFavorite = async (flatId) => {
-    const userService = new UserService();
-    try {
-      await userService.toggleFavorite(flatId);
-      const localStorageService = new LocalStorageService();
-      const updateUser = localStorageService.getUser();
-      setUserLogged(updateUser);
-    } catch (error) {
-      console.error("Error toggling favorite:", error);
-    }
+  const handleFavorite = async (flatId) => {
+    toggleFavorite(flatId, setUserLogged);
   };
 
   return (
@@ -108,7 +99,7 @@ const Home = () => {
         <section>
           {loadingFlats && (
             <>
-              <FlatList flats={flats.items} toggleFavorite={toggleFavorite} />
+              <FlatList flats={flats.items} handleFavorite={handleFavorite} />
               {!loadingPages && (
                 <div className="flex justify-center mt-1">
                   <PaginationFilter

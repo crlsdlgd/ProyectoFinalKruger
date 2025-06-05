@@ -1,3 +1,6 @@
+import { LocalStorageService } from "../services/localStorageService";
+import { UserService } from "../services/userService";
+
 const calculateAge = (birthDate) => {
   const today = new Date();
   const birthDateObj = new Date(birthDate);
@@ -14,4 +17,16 @@ const calendarToISOString = (date) => {
   return new Date(year, month - 1, day).toISOString();
 };
 
-export { calculateAge, calendarToISOString };
+const toggleFavorite = async (flatId, setUserLogged) => {
+  const userService = new UserService();
+  try {
+    await userService.toggleFavorite(flatId);
+    const localStorageService = new LocalStorageService();
+    const updateUser = localStorageService.getUser();
+    setUserLogged(updateUser);
+  } catch (error) {
+    console.error("Error toggling favorite:", error);
+  }
+};
+
+export { calculateAge, calendarToISOString, toggleFavorite };

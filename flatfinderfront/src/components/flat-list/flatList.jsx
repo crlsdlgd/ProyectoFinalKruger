@@ -23,69 +23,71 @@ export const columns = [
   { name: "DATE AVAILABLE", uid: "dateAvailable" },
   { name: "ACTIONS", uid: "actions" },
 ];
-const FlatList = ({ flats = [], toggleFavorite }) => {
-  const renderCell = useCallback((flat, columnKey) => {
-    const cellValue = flat[columnKey];
-    switch (columnKey) {
+
+const FlatList = ({ flats = [], handleFavorite }) => {
+  const renderFavoriteButton = (flat) => {
+    const isFavorite = flat.isFavorite;
+    const iconClass = isFavorite
+      ? "text-red-500 fill-red-500"
+      : "text-txtlight dark:text-txtdark";
+    const tooltipText = isFavorite
+      ? "Remove from favorites"
+      : "Add to favorites";
+
+    return (
+      <Tooltip
+        content={tooltipText}
+        className="hover:cursor-pointer"
+        placement="left"
+        color="secondary"
+        delay={1000}
+        showArrow
+      >
+        <button onClick={() => handleFavorite(flat._id)}>
+          <HeartOutlineIcon className={iconClass} />
+        </button>
+      </Tooltip>
+    );
+  };
+
+  const renderActions = (flat) => (
+    <div className="flex gap-2">
+      {renderFavoriteButton(flat)}
+      <Tooltip
+        content="Details"
+        className="hover:cursor-pointer"
+        placement="left"
+        color="secondary"
+        delay={1000}
+        showArrow
+      >
+        <span>
+          <EyeIcon className="text-txtlight dark:text-txtdark" />
+        </span>
+      </Tooltip>
+    </div>
+  );
+
+  const formatCellValue = (flat, key) => {
+    const value = flat[key];
+    switch (key) {
       case "hasAC":
-        return cellValue ? "YES" : "NO";
+        return value ? "YES" : "NO";
       case "rentPrice":
-        return `$${cellValue}`;
+        return `$${value}`;
       case "dateAvailable":
-        return new Date(cellValue).toLocaleDateString();
+        return new Date(value).toLocaleDateString();
       case "actions":
-        return (
-          <div className="flex gap-2">
-            {flat.isFavorite ? (
-              <Tooltip
-                content="Remove from favorites"
-                className="hover:cursor-pointer"
-                placement="left"
-                color="secondary"
-                showArrow
-              >
-                <button
-                  onClick={() => {
-                    toggleFavorite(flat._id);
-                  }}
-                >
-                  <HeartOutlineIcon className="text-red-500 fill-red-500" />
-                </button>
-              </Tooltip>
-            ) : (
-              <Tooltip
-                content="Add to favorites"
-                className="hover:cursor-pointer"
-                placement="left"
-                color="secondary"
-                showArrow
-              >
-                <button
-                  onClick={() => {
-                    toggleFavorite(flat._id);
-                  }}
-                >
-                  <HeartOutlineIcon className="text-txtlight dark:text-txtdark" />
-                </button>
-              </Tooltip>
-            )}
-            <Tooltip
-              content="Details"
-              className="hover:cursor-pointer"
-              placement="left"
-              color="secondary"
-              showArrow
-            >
-              <span>
-                <EyeIcon className="text-txtlight dark:text-txtdark" />
-              </span>
-            </Tooltip>
-          </div>
-        );
+        return renderActions(flat);
       default:
-        return cellValue;
+        return value;
     }
-  }, []);
+  };
+
+  const renderCell = useCallback(
+    (flat, columnKey) => formatCellValue(flat, columnKey),
+    [handleFavorite]
+  );
 
   return (
     <div className="max-w-[100vw] overflow-x-auto" id="flat-list-container">
@@ -108,7 +110,6 @@ const FlatList = ({ flats = [], toggleFavorite }) => {
         </TableBody>
       </Table>
     </div>
-    // </ScrollShadow>
   );
 };
 
