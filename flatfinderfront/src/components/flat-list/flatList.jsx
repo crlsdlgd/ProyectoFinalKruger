@@ -23,7 +23,7 @@ export const columns = [
   { name: "DATE AVAILABLE", uid: "dateAvailable" },
   { name: "ACTIONS", uid: "actions" },
 ];
-const FlatList = ({ flats = [], toggleFavorite, favoriteFlatIds = [] }) => {
+const FlatList = ({ flats = [], toggleFavorite }) => {
   const renderCell = useCallback((flat, columnKey) => {
     const cellValue = flat[columnKey];
     switch (columnKey) {
@@ -36,10 +36,13 @@ const FlatList = ({ flats = [], toggleFavorite, favoriteFlatIds = [] }) => {
       case "actions":
         return (
           <div className="flex gap-2">
-            {favoriteFlatIds.includes(flat._id) ? (
+            {flat.isFavorite ? (
               <Tooltip
                 content="Remove from favorites"
                 className="hover:cursor-pointer"
+                placement="left"
+                color="secondary"
+                showArrow
               >
                 <button
                   onClick={() => {
@@ -53,6 +56,9 @@ const FlatList = ({ flats = [], toggleFavorite, favoriteFlatIds = [] }) => {
               <Tooltip
                 content="Add to favorites"
                 className="hover:cursor-pointer"
+                placement="left"
+                color="secondary"
+                showArrow
               >
                 <button
                   onClick={() => {
@@ -63,7 +69,13 @@ const FlatList = ({ flats = [], toggleFavorite, favoriteFlatIds = [] }) => {
                 </button>
               </Tooltip>
             )}
-            <Tooltip content="Details" className="hover:cursor-pointer">
+            <Tooltip
+              content="Details"
+              className="hover:cursor-pointer"
+              placement="left"
+              color="secondary"
+              showArrow
+            >
               <span>
                 <EyeIcon className="text-txtlight dark:text-txtdark" />
               </span>

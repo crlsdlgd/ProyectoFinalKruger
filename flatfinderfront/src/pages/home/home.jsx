@@ -25,10 +25,7 @@ const Home = () => {
   });
 
   useEffect(() => {
-    setLoadingFlats(false);
-    setTimeout(() => {
-      setLoadingFlats(true);
-    }, 10);
+    loadFlats(globalFilters);
   }, [userLogged]);
 
   useEffect(() => {
@@ -39,7 +36,6 @@ const Home = () => {
     setLoadingPages(true);
     setCurrentPage(1);
     setPaginationFilter("&page=1");
-    //Este Timeout obliga a desmontar y montar el componente FlatList para que se actualice correctamente
     setTimeout(() => {
       setLoadingPages(false);
     }, 100);
@@ -67,6 +63,12 @@ const Home = () => {
   const loadFlats = async (filters) => {
     const flatService = new FlatService();
     const data = await flatService.getAllFlats(filters);
+
+    data.items = data.items.map((flat) => ({
+      ...flat,
+      isFavorite: userLogged?.favoriteFlatIds?.includes(flat._id) || false,
+    }));
+
     setFlats(data);
     setLoadingFlats(true);
   };
@@ -82,11 +84,9 @@ const Home = () => {
     const userService = new UserService();
     try {
       await userService.toggleFavorite(flatId);
-      // Optionally, you can refresh the flats list or update the UI accordingly
       const localStorageService = new LocalStorageService();
       const updateUser = localStorageService.getUser();
       setUserLogged(updateUser);
-      loadFlats(globalFilters);
     } catch (error) {
       console.error("Error toggling favorite:", error);
     }
@@ -108,11 +108,7 @@ const Home = () => {
         <section>
           {loadingFlats && (
             <>
-              <FlatList
-                flats={flats.items}
-                toggleFavorite={toggleFavorite}
-                favoriteFlatIds={userLogged?.favoriteFlatIds}
-              />
+              <FlatList flats={flats.items} toggleFavorite={toggleFavorite} />
               {!loadingPages && (
                 <div className="flex justify-center mt-1">
                   <PaginationFilter
