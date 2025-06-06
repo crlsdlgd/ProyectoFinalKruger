@@ -6,15 +6,16 @@ import {
   getFlatById as getFlatByIdRepository,
   getFlatsCities as getFlatsCitiesRepository,
 } from "../repository/flat.repository.js";
+import { getFavoriteFlatsIdsByUserId } from "../repository/user.repository.js";
 
 const createFlat = async (flat, userId) => await saveFlat(flat, userId);
 const updateFlat = async (flatId, flat) => await updateFlatRepository(flatId, flat);
 const deleteFlat = async (flatId) => await deleteFlatRepository(flatId);
 const getFlatsCities = async () => await getFlatsCitiesRepository();
 
-const getAllFlats = async (query) => {
+const getAllFlats = async (query, userId) => {
   let queryObject = { ...query };
-  const withoutFields = ["sort", "page", "limit", "fields"];
+  const withoutFields = ["sort", "page", "limit", "fields", "pathname"];
   withoutFields.forEach((field) => delete queryObject[field]);
 
   //Operadores Mongo
@@ -42,6 +43,23 @@ const getAllFlats = async (query) => {
   const limit = parseInt(query.limit) || 10;
   const skip = (page - 1) * limit;
 
+  //Home, mis flats, favoritos
+  switch (query.pathname) {
+    case "my-flats":
+      queryObject = { ...queryObject, ownerId: userId };
+      break;
+    case "favorites":
+      const favoriteFlatIds = await getFavoriteFlatsIdsByUserId(userId);
+      queryObject = {
+        ...queryObject,
+        _id: { $in: favoriteFlatIds },
+      };
+      break;
+    default:
+      break;
+  }
+
+  //llamar al repositorio
   return await getAllFlatsRepository(
     queryObject,
     selected,

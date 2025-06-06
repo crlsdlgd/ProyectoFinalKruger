@@ -27,7 +27,7 @@ const getFlatById = async (req, res) => {
 
 const getAllFlats = async (req, res) => {
   try {
-    const flats = await getAllFlatsService(req.query);
+    const flats = await getAllFlatsService(req.query, req.user.id);
     res.status(200).json(flats);
   } catch (error) {
     res.status(400).json({ message: error.message });

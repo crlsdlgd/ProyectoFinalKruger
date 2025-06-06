@@ -5,35 +5,28 @@ export class FlatService {
     this.url = 'http://localhost:8080/flat';
   }
 
-  // async saveFlat(flat) {
-  //   const response = await fetch(`${this.url}/`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(flat)
-  //   });
-  //   const data = await response.json();
-  //   if (!response.ok) {
-  //     throw new Error(data.message || "Unknown error");
-  //   }
-  //   return data;
-  // }
-
-  // async getFlat(id) {
-  //   const response = await fetch(`${this.url}/${id}`, {
-  //     method: `GET`,
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   });
-  //   return response.json();
-  // }
-
-  async getAllFlats(filters) {
+  async getAllFlats(filters, pathname) {
     const localStorageService = new LocalStorageService();
     const token = localStorageService.getToken();
-    const response = await fetch(`${this.url}/${filters}`, {
+    if (filters === '') {
+      filters = '?';
+    } else {
+      filters = `${filters}&`;
+    }
+    let uri = `${this.url}/${filters}`;
+    switch (pathname) {
+      case '/my-flats':
+        uri = `${uri}pathname=my-flats`;
+        break;
+      case '/favorites':
+        uri = `${uri}pathname=favorites`;
+        break;
+      default:
+        uri = `${uri}pathname=home`;
+        break;
+    }
+    console.log("URI: ", uri);
+    const response = await fetch(uri, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

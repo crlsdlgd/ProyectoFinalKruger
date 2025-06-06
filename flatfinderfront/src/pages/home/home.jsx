@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { FlatService } from "../../services/FlatService";
 import { PaginationFilter } from "../../components/paginationFilter/paginationFilter";
 import { toggleFavorite } from "../../utils/utils";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const [flats, setFlats] = useState([]);
@@ -22,6 +23,7 @@ const Home = () => {
     const user = localStorage.getItem("user");
     return user ? JSON.parse(user) : null;
   });
+  const pathname = useLocation().pathname;
 
   useEffect(() => {
     loadFlats(globalFilters);
@@ -61,7 +63,7 @@ const Home = () => {
 
   const loadFlats = async (filters) => {
     const flatService = new FlatService();
-    const data = await flatService.getAllFlats(filters);
+    const data = await flatService.getAllFlats(filters, pathname);
 
     data.items = data.items.map((flat) => ({
       ...flat,

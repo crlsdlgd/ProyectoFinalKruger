@@ -62,5 +62,10 @@ const deleteUser = async (userId) => {
   return user;
 };
 
+const getFavoriteFlatsIdsByUserId = async (userId) => {
+  const favoriteFlats = await User.findOne({ _id: userId, deletedAt: null }).select("favoriteFlatIds -_id").lean();
+  return favoriteFlats?.favoriteFlatIds || [];
+}
 
-export { saveUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser };
+
+export { saveUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser, getFavoriteFlatsIdsByUserId };
