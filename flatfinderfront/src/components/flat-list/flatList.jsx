@@ -8,9 +8,10 @@ import {
   Tooltip,
 } from "@heroui/react";
 import { useCallback } from "react";
-import { EyeIcon } from "../icons/EyeIcon";
-import { HeartOutlineIcon } from "../icons/HeartOutlineIcon";
+import { EyeIcon } from "../icons/eyeIcon";
+import { HeartOutlineIcon } from "../icons/heartOutlineIcon";
 import "./flatList.css";
+import { useNavigate } from "react-router-dom";
 
 export const columns = [
   { name: "CITY", uid: "city" },
@@ -25,6 +26,7 @@ export const columns = [
 ];
 
 const FlatList = ({ flats = [], handleFavorite }) => {
+  const navigate = useNavigate();
   const renderFavoriteButton = (flat) => {
     const isFavorite = flat.isFavorite;
     const iconClass = isFavorite
@@ -61,9 +63,9 @@ const FlatList = ({ flats = [], handleFavorite }) => {
         delay={1000}
         showArrow
       >
-        <span>
+        <button onClick={() => navigate(`/view-flat/${flat._id}`)}>
           <EyeIcon className="text-txtlight dark:text-txtdark" />
-        </span>
+        </button>
       </Tooltip>
     </div>
   );

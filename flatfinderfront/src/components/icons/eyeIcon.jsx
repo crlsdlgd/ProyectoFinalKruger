@@ -1,4 +1,5 @@
 export const EyeIcon = ({
+  className = "",
   fill = "currentColor",
   filled,
   size,
@@ -9,11 +10,11 @@ export const EyeIcon = ({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill={filled ? "currentColor" : "none"}
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="size-6"
+      class={`size-6 ${className}`}
     >
       <path
         stroke-linecap="round"

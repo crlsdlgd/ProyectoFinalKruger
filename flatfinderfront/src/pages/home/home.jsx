@@ -4,7 +4,7 @@ import FlatFilter from "../../components/flat-filter/flatFilter";
 import FlatList from "../../components/flat-list/flatList";
 import { NavBar } from "../../components/navbar/navbar";
 import { useEffect, useState } from "react";
-import { FlatService } from "../../services/FlatService";
+import { FlatService } from "../../services/flatService";
 import { PaginationFilter } from "../../components/paginationFilter/paginationFilter";
 import { toggleFavorite } from "../../utils/utils";
 import { useLocation } from "react-router-dom";
@@ -91,6 +91,11 @@ const Home = () => {
         <NavBar />
       </div>
       <main>
+        <h3 className="text-center text-xl font-bold mt-2 mb-2 text-txtlight dark:text-txtdark">
+          {pathname === "/" && "Home"}
+          {pathname === "/my-flats" && "My Flats"}
+          {pathname === "/favorites" && "Favorites"}
+        </h3>
         <section>
           {loadingCities && (
             <div className="flex justify-center mt-1 w-full min-w-full">
