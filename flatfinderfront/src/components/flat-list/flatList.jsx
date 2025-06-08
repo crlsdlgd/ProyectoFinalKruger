@@ -12,6 +12,7 @@ import { EyeIcon } from "../icons/eyeIcon";
 import { HeartOutlineIcon } from "../icons/heartOutlineIcon";
 import "./flatList.css";
 import { useNavigate } from "react-router-dom";
+import FavoriteButton from "../favorite-button/FavoriteButton";
 
 export const columns = [
   { name: "CITY", uid: "city" },
@@ -54,7 +55,11 @@ const FlatList = ({ flats = [], handleFavorite }) => {
 
   const renderActions = (flat) => (
     <div className="flex gap-2">
-      {renderFavoriteButton(flat)}
+      {/* {renderFavoriteButton(flat)} */}
+      <FavoriteButton
+        isFavorite={flat.isFavorite}
+        onClick={() => handleFavorite(flat._id)}
+      />
       <Tooltip
         content="Details"
         className="hover:cursor-pointer"

@@ -1,10 +1,10 @@
 import { Card, CardFooter, Image, Button, Chip, Divider } from "@heroui/react";
 import { MapPinIcon } from "../icons/mapPinIcon";
-import { HeartOutlineIcon } from "../icons/heartOutlineIcon";
 import { EyeIcon } from "../icons/eyeIcon";
 import { useEffect } from "react";
+import FavoriteButton from "../favorite-button/FavoriteButton";
 
-const FlatCard = ({ flat }) => {
+const FlatCard = ({ flat, handleFavorite }) => {
   useEffect(() => {
     console.log("FlatCard props:", flat);
   }, [flat]);
@@ -15,7 +15,7 @@ const FlatCard = ({ flat }) => {
         className="object-cover"
         height={300}
         src="/assets/flat2.jpg"
-        width={300}
+        width="100%"
       />
       <CardFooter className="bg-background/30 before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
         <div className="w-full">
@@ -68,27 +68,10 @@ const FlatCard = ({ flat }) => {
           <div>
             <div className="flex justify-end items-center gap-1">
               <div>
-                {flat.isFavorite ? (
-                  <Button
-                    className="text-tiny bg-black/20 w-10 min-w-10 p-0"
-                    radius="lg"
-                    size="sm"
-                    variant="flat"
-                    color="default"
-                  >
-                    <HeartOutlineIcon className="text-red-500 fill-red-500" />
-                  </Button>
-                ) : (
-                  <Button
-                    className="text-tiny bg-black/20 w-10 min-w-10 p-0"
-                    radius="lg"
-                    size="sm"
-                    variant="flat"
-                    color="default"
-                  >
-                    <HeartOutlineIcon className="text-txtlight dark:text-txtdark" />
-                  </Button>
-                )}
+                <FavoriteButton
+                  isFavorite={flat.isFavorite}
+                  onClick={() => handleFavorite(flat._id)}
+                />
               </div>
               <div>
                 <Button

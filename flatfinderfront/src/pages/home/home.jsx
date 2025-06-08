@@ -1,13 +1,18 @@
 import Footer from "../../components/footer/footer";
-import "../pages.css";
 import FlatFilter from "../../components/flat-filter/flatFilter";
 import FlatList from "../../components/flat-list/flatList";
+import FlatCard from "../../components/flat-card/flatCard";
 import { NavBar } from "../../components/navbar/navbar";
 import { useEffect, useState } from "react";
 import { FlatService } from "../../services/flatService";
 import { PaginationFilter } from "../../components/paginationFilter/paginationFilter";
 import { toggleFavorite } from "../../utils/utils";
 import { useLocation } from "react-router-dom";
+import "../pages.css";
+import "./home.css";
+import { GridIcon } from "../../components/icons/gridIcon";
+import { ListIcon } from "../../components/icons/listIcon";
+import { Button } from "@heroui/react";
 
 const Home = () => {
   const [flats, setFlats] = useState([]);
@@ -19,6 +24,7 @@ const Home = () => {
   const [globalFilters, setGlobalFilters] = useState(""); // Este filtro se encarga de adjuntar los filtros de paginacion y los filtros de busqueda
   const [cities, setCities] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [view, setView] = useState("grid"); // Estado para el modo de vista (lista o cuadrícula)
   const [userLogged, setUserLogged] = useState(() => {
     const user = localStorage.getItem("user");
     return user ? JSON.parse(user) : null;
@@ -106,7 +112,35 @@ const Home = () => {
         <section>
           {loadingFlats && (
             <>
-              <FlatList flats={flats.items} handleFavorite={handleFavorite} />
+              <div className="flex justify-end items-center mb-2 mr-10">
+                <span className="text-txtlight dark:text-txtdark mr-2">
+                  View
+                </span>
+                {view === "list" ? (
+                  <Button
+                    className="m-0 p-0 w-10 min-w-10 rounded-full "
+                    onPress={() => setView("grid")}
+                  >
+                    <GridIcon className="text-txtlight dark:text-txtdark" />
+                  </Button>
+                ) : (
+                  <Button
+                    className="m-0 p-0 w-10 min-w-10 rounded-full "
+                    onPress={() => setView("list")}
+                  >
+                    <ListIcon className="text-txtlight dark:text-txtdark" />
+                  </Button>
+                )}
+              </div>
+              {view === "list" ? (
+                <FlatList flats={flats.items} handleFavorite={handleFavorite} />
+              ) : (
+                <div className="grid-view-container">
+                  {flats.items.map((flat) => (
+                    <FlatCard flat={flat} handleFavorite={handleFavorite} />
+                  ))}
+                </div>
+              )}
               {!loadingPages && (
                 <div className="flex justify-center mt-1">
                   <PaginationFilter
