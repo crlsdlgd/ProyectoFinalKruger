@@ -25,7 +25,6 @@ export class FlatService {
         uri = `${uri}pathname=home`;
         break;
     }
-    console.log("URI: ", uri);
     const response = await fetch(uri, {
       method: 'GET',
       headers: {

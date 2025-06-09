@@ -1,4 +1,5 @@
 import {
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -41,7 +42,7 @@ const FlatList = ({ flats = [], handleFavorite }) => {
       <Tooltip
         content={tooltipText}
         className="hover:cursor-pointer"
-        placement="left"
+        placement="top"
         color="secondary"
         delay={1000}
         showArrow
@@ -55,7 +56,6 @@ const FlatList = ({ flats = [], handleFavorite }) => {
 
   const renderActions = (flat) => (
     <div className="flex gap-2">
-      {/* {renderFavoriteButton(flat)} */}
       <FavoriteButton
         isFavorite={flat.isFavorite}
         onClick={() => handleFavorite(flat._id)}
@@ -63,14 +63,17 @@ const FlatList = ({ flats = [], handleFavorite }) => {
       <Tooltip
         content="Details"
         className="hover:cursor-pointer"
-        placement="left"
+        placement="top"
         color="secondary"
         delay={1000}
         showArrow
       >
-        <button onClick={() => navigate(`/view-flat/${flat._id}`)}>
+        <Button
+          className="min-w-10 w-10 p-0 rounded-full bg-transparent"
+          onPress={() => navigate(`/view-flat/${flat._id}`)}
+        >
           <EyeIcon className="text-txtlight dark:text-txtdark" />
-        </button>
+        </Button>
       </Tooltip>
     </div>
   );

@@ -138,7 +138,7 @@ export const NavBar = () => {
               </p>
             </DropdownItem>
             <DropdownItem
-              key="profile"
+              key="my-profile"
               className="text-txtlight dark:text-txtdark"
               href={`/profile/${user?.id}`}
             >

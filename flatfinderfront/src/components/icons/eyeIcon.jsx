@@ -14,7 +14,7 @@ export const EyeIcon = ({
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class={`size-6 ${className}`}
+      className={`size-6 ${className}`}
     >
       <path
         stroke-linecap="round"

@@ -41,7 +41,7 @@ const FavoriteButton = ({ isFavorite, onClick }) => {
     <Tooltip
       content={tooltipText}
       className="hover:cursor-pointer"
-      placement="left"
+      placement="top"
       color="secondary"
       delay={1000}
       showArrow

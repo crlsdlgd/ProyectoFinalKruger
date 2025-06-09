@@ -1,17 +1,24 @@
-import { Card, CardFooter, Image, Button, Chip, Divider } from "@heroui/react";
+import {
+  Card,
+  CardFooter,
+  Image,
+  Button,
+  Chip,
+  Divider,
+  Tooltip,
+} from "@heroui/react";
 import { MapPinIcon } from "../icons/mapPinIcon";
 import { EyeIcon } from "../icons/eyeIcon";
-import { useEffect } from "react";
 import FavoriteButton from "../favorite-button/FavoriteButton";
+import { useNavigate } from "react-router-dom";
 
 const FlatCard = ({ flat, handleFavorite }) => {
-  useEffect(() => {
-    console.log("FlatCard props:", flat);
-  }, [flat]);
+  const navigate = useNavigate();
+
   return (
     <Card isFooterBlurred className="border-none" radius="lg">
       <Image
-        alt="Woman listing to music"
+        alt="flat image"
         className="object-cover"
         height={300}
         src="/assets/flat2.jpg"
@@ -74,15 +81,21 @@ const FlatCard = ({ flat, handleFavorite }) => {
                 />
               </div>
               <div>
-                <Button
-                  className="text-tiny bg-black/20 w-10 min-w-10 p-0"
-                  radius="lg"
-                  size="sm"
-                  variant="flat"
-                  color="default"
+                <Tooltip
+                  content="Details"
+                  className="hover:cursor-pointer"
+                  placement="top"
+                  color="secondary"
+                  delay={1000}
+                  showArrow
                 >
-                  <EyeIcon className="text-txtlight dark:text-txtdark" />
-                </Button>
+                  <Button
+                    className="min-w-10 w-10 p-0 rounded-full bg-transparent"
+                    onPress={() => navigate(`/view-flat/${flat._id}`)}
+                  >
+                    <EyeIcon className="text-txtlight dark:text-txtdark" />
+                  </Button>
+                </Tooltip>
               </div>
             </div>
           </div>
