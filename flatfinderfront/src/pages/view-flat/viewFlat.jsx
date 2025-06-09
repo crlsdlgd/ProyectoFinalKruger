@@ -119,7 +119,7 @@ const ViewFlat = () => {
                   showArrow
                 >
                   <Button
-                    className="p-0 rounded-full w-10 min-w-10 bg-primary hover:bg-primary-hover text-txtdark"
+                    className="p-0 rounded-full w-10 min-w-10 bg-primary hover:bg-primary-hover text-txtdark right-4"
                     onPress={() => navigate(`/edit-flat/${flat._id}`)}
                   >
                     <PencilSquareIcon />

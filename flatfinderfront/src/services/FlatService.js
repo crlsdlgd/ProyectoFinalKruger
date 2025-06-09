@@ -73,4 +73,18 @@ export class FlatService {
     });
     return response.json();
   }
+
+  async updateFlat(flatId, flat) {
+    const localStorageService = new LocalStorageService();
+    const token = localStorageService.getToken();
+    const response = await fetch(`${this.url}/${flatId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(flat)
+    });
+    return response.json();
+  }
 }
