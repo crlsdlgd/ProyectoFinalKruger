@@ -7,12 +7,13 @@ import { useEffect, useState } from "react";
 import { FlatService } from "../../services/flatService";
 import { PaginationFilter } from "../../components/paginationFilter/paginationFilter";
 import { toggleFavorite } from "../../utils/utils";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../pages.css";
 import "./home.css";
 import { GridIcon } from "../../components/icons/gridIcon";
 import { ListIcon } from "../../components/icons/listIcon";
-import { Button } from "@heroui/react";
+import { Button, Tooltip } from "@heroui/react";
+import { PlusIcon } from "../../components/icons/plusIcon";
 
 const Home = () => {
   const [flats, setFlats] = useState([]);
@@ -30,6 +31,7 @@ const Home = () => {
     return user ? JSON.parse(user) : null;
   });
   const pathname = useLocation().pathname;
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadFlats(globalFilters);
@@ -152,6 +154,26 @@ const Home = () => {
                 </div>
               )}
             </>
+          )}
+          {pathname == "/my-flats" && (
+            <div className="flex justify-end items-center mb-2 mr-10">
+              <Tooltip
+                content="New Flat"
+                className="hover:cursor-pointer"
+                placement="top"
+                color="secondary"
+                delay={1000}
+                showArrow
+              >
+                <Button
+                  className="p-0 w-10 min-w-10 rounded-full"
+                  color="success"
+                  onPress={() => navigate("/new-flat")}
+                >
+                  <PlusIcon className="text-txtdark" />
+                </Button>
+              </Tooltip>
+            </div>
           )}
         </section>
       </main>
