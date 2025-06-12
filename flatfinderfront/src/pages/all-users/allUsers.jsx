@@ -20,10 +20,10 @@ const AllUsers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [view, setView] = useState("list");
   const [loadingPages, setLoadingPages] = useState(false);
-  const [userLogged, setUserLogged] = useState(() => {
-    const user = localStorage.getItem("user");
-    return user ? JSON.parse(user) : null;
-  });
+  // const [userLogged, setUserLogged] = useState(() => {
+  //   const user = localStorage.getItem("user");
+  //   return user ? JSON.parse(user) : null;
+  // });
 
   useEffect(() => {
     loadUsers(globalFilters);

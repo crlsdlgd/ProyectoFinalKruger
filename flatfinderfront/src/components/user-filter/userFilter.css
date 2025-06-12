@@ -1,0 +1,61 @@
+.user-filter-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.user-filter-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.user-filter-age,
+.user-filter-sort,
+.user-filter-buttons {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.user-filter-inputs {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.user-filter-sort {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.5rem; */
+}
+
+.user-filter-sort div {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.user-filter-sort div button {
+  flex: 1;
+}
+
+.sort-select {
+  flex: 1;
+  /* padding: 0.5rem; */
+  border-radius: 8px;
+}
+
+.user-filter-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-filter-buttons button {
+  flex: 1;
+}
