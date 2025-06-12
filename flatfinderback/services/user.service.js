@@ -64,7 +64,7 @@ const getAllUsers = async (query) => {
 
     //Quitamos la contraseña de los usuarios
     //Se lo hace de esta forma por que no podemos usar .select("-password")
-    users.forEach((user) => {
+    users.items.forEach((user) => {
         user.password = undefined;
     });
     return users;

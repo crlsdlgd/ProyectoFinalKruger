@@ -34,29 +34,38 @@ export class UserService {
   }
 
   async getAllUsers() {
+    const localStorageService = new LocalStorageService();
+    const token = localStorageService.getToken();
     const response = await fetch(`${this.url}/`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     });
     return response.json();
   }
   async updateUser(id, user) {
+    const localStorageService = new LocalStorageService();
+    const token = localStorageService.getToken();
     user.birthdate = calendarToISOString(user.birthdate);
     const response = await fetch(`${this.url}/${id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(user)
     })
   }
   async deleteUser(id) {
+    const localStorageService = new LocalStorageService();
+    const token = localStorageService.getToken();
     const response = await fetch(`${this.url}/${id}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     });
     return response.json();
@@ -97,16 +106,16 @@ export class UserService {
     });
     return response.json();
   }
-  async getUserByToken(token) {
-    const response = await fetch(`${this.url}/token`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    return response.json();
-  }
+  // async getUserByToken(token) {
+  //   const response = await fetch(`${this.url}/token`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${token}`
+  //     }
+  //   });
+  //   return response.json();
+  // }
 
   async toggleFavorite(flatId) {
     const localStorageService = new LocalStorageService();

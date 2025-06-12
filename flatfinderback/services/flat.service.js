@@ -59,7 +59,7 @@ const getAllFlats = async (query, userId) => {
       break;
   }
 
-  //llamar al repositorio
+  //Consulta a la base de datos
   return await getAllFlatsRepository(
     queryObject,
     selected,

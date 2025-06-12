@@ -26,11 +26,17 @@ const getUserById = async (userId) => {
 };
 
 const getAllUsers = async (filters, selected, sort, skip, limit) => {
-  return await User.find({ ...filters, deletedAt: null })
+  const users = await User.find({ ...filters, deletedAt: null })
     .select(selected)
     .sort(sort)
     .skip(skip)
     .limit(limit);
+  const count = await User.countDocuments({ ...filters, deletedAt: null });
+
+  return {
+    items: users,
+    pages: Math.ceil(count / limit)
+  };
 };
 
 const updateUser = async (userId, user) => {
