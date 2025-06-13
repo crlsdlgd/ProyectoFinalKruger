@@ -22,12 +22,14 @@ export class UserService {
     return data;
   }
 
-  async getUser(id) {
+  async getUserById(id) {
+    const localStorageService = new LocalStorageService();
+    const token = localStorageService.getToken();
     const response = await fetch(`${this.url}/${id}`, {
       method: `GET`,
       headers: {
-        'Content-Type': 'application/json'
-
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     });
     return response.json();
