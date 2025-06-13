@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./userFilter.css";
 import { Button, Input, Select, SelectItem } from "@heroui/react";
 import { ArrowDownIcon } from "../icons/arrowDownIcon";
+import { getDateYearsAgo } from "../../utils/utils";
+import { ArrowUpIcon } from "../icons/arrowUpIcon";
 
 const UserFilter = ({ setSearchFilters }) => {
   const [sortBy, setSortBy] = useState("firstname");
@@ -12,11 +14,11 @@ const UserFilter = ({ setSearchFilters }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let filters = "";
-    if (minAge) {
-      filters += `age[gte]=${minAge}&`;
+    if (minAgeFilter) {
+      filters += `birthdate[lte]=${getDateYearsAgo(minAgeFilter)}&`;
     }
-    if (maxAge) {
-      filters += `age[lte]=${maxAge}&`;
+    if (maxAgeFilter) {
+      filters += `birthdate[gte]=${getDateYearsAgo(maxAgeFilter)}&`;
     }
     if (sortBy) {
       if (ascDesc === "asc") {
@@ -31,8 +33,8 @@ const UserFilter = ({ setSearchFilters }) => {
   const resetFilters = () => {
     setSortBy("firstname");
     setAscDesc("asc");
-    setMinAge(null);
-    setMaxAge(null);
+    setMinAgeFilter("");
+    setMaxAgeFilter("");
   };
 
   return (

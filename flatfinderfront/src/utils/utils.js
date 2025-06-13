@@ -17,6 +17,12 @@ const calendarToISOString = (date) => {
   return new Date(year, month - 1, day).toISOString();
 };
 
+const getDateYearsAgo = (yearsAgo) => {
+  const today = new Date();
+  const yearsAgoDate = new Date(today.getFullYear() - yearsAgo, today.getMonth(), today.getDate());
+  return yearsAgoDate.toISOString().slice(0, 10);
+};
+
 const toggleFavorite = async (flatId, setUserLogged) => {
   const userService = new UserService();
   try {
@@ -29,4 +35,4 @@ const toggleFavorite = async (flatId, setUserLogged) => {
   }
 };
 
-export { calculateAge, calendarToISOString, toggleFavorite };
+export { calculateAge, calendarToISOString, toggleFavorite, getDateYearsAgo };

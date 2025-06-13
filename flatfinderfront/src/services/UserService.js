@@ -33,10 +33,10 @@ export class UserService {
     return response.json();
   }
 
-  async getAllUsers() {
+  async getAllUsers(filters) {
     const localStorageService = new LocalStorageService();
     const token = localStorageService.getToken();
-    const response = await fetch(`${this.url}/`, {
+    const response = await fetch(`${this.url}/${filters}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -70,15 +70,7 @@ export class UserService {
     });
     return response.json();
   }
-  // async getUserByEmail(email) {
-  //   const response = await fetch(`${this.url}/email/${email}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   });
-  //   return response.json();
-  // }
+
   async loginUser(email, password) {
     const response = await fetch(`${this.url}/login`, {
       method: 'POST',
@@ -106,16 +98,6 @@ export class UserService {
     });
     return response.json();
   }
-  // async getUserByToken(token) {
-  //   const response = await fetch(`${this.url}/token`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${token}`
-  //     }
-  //   });
-  //   return response.json();
-  // }
 
   async toggleFavorite(flatId) {
     const localStorageService = new LocalStorageService();
