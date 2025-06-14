@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { LocalStorageService } from "../services/localStorageService";
+import { jwtDecode } from "jwt-decode";
 
 const useUserRole = () => {
   const [role, setRole] = useState("");

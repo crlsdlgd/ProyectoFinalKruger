@@ -25,10 +25,6 @@ export const columns = [
 const UserList = ({ users = [] }) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("USERS", users);
-  }, [users]);
-
   const viewUserButton = (user) => {
     return (
       <Tooltip

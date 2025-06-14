@@ -13,7 +13,6 @@ const calculateAge = (birthDate) => {
 };
 
 const calendarToISOString = (date) => {
-  console.log("DATE CALENDAR", date);
   return new Date(date).toISOString();
 };
 

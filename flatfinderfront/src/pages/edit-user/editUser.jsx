@@ -18,7 +18,6 @@ const EditUser = () => {
   const loadUser = async () => {
     const userService = new UserService();
     const data = await userService.getUserById(userId);
-    console.log(data);
     setUser(data);
   };
 

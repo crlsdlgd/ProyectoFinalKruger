@@ -8,7 +8,6 @@ export class UserService {
 
   async saveUser(user) {
     user.birthdate = calendarToISOString(user.birthdate);
-    console.log("USER TO SAVE: ", user);
     const response = await fetch(`${this.url}/`, {
       method: 'POST',
       headers: {
@@ -53,13 +52,14 @@ export class UserService {
     const token = localStorageService.getToken();
     user.birthdate = calendarToISOString(user.birthdate);
     const response = await fetch(`${this.url}/${id}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(user)
     })
+    return response.json();
   }
 
 
