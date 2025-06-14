@@ -1,5 +1,15 @@
 import jwt from "jsonwebtoken";
-import { saveUser, loginUser as loginUserRepository, getUserById as getUserByIdRepository, getAllUsers as getAllUsersRepository, updateUser as updateUserRepository, deleteUser as deleteUserRepository } from "../repository/user.repository.js";
+import bcrypt from "bcrypt";
+import {
+    saveUser,
+    loginUser as loginUserRepository,
+    getUserById as getUserByIdRepository,
+    getAllUsers as getAllUsersRepository,
+    updateUser as updateUserRepository,
+    deleteUser as deleteUserRepository,
+    isPasswordsMatchRepository
+}
+    from "../repository/user.repository.js";
 import configs from "../configs/configs.js";
 
 const createUser = async (user) => await saveUser(user);
@@ -83,4 +93,14 @@ const toggleFavorite = async (userId, flatId) => {
     return user;
 };
 
-export { createUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser, toggleFavorite };
+const updatePassword = async (userId, currentPassword, newPassword) => {
+    const userToUpdate = await getUserByIdRepository(userId);
+    if (!userToUpdate) throw new Error("User not found");
+    const isPasswordsMatch = await isPasswordsMatchRepository(currentPassword, userId);
+    if (!isPasswordsMatch) throw new Error("Current password is incorrect");
+    userToUpdate.password = await bcrypt.hash(newPassword, 10);
+    await updateUserRepository(userId, userToUpdate);
+    return userToUpdate;
+};
+
+export { createUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser, toggleFavorite, updatePassword };

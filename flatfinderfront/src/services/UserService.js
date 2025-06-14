@@ -120,6 +120,24 @@ export class UserService {
     const data = await response.json();
     localStorageService.saveUser(data);
   }
+
+  async updatePassword(currentPassword, newPassword) {
+    const localStorageService = new LocalStorageService();
+    const token = localStorageService.getToken();
+    const response = await fetch(`${this.url}/update-password`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ currentPassword, newPassword })
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || "Unknown error");
+    }
+    return data;
+  }
 };
 
 

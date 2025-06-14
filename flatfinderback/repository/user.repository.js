@@ -46,9 +46,7 @@ const updateUser = async (userId, user) => {
     { new: true }
   );
   if (!updatedUser) return null;
-
-  // Elimina el campo password manualmente
-  updatedUser.password = undefined;
+  //a la respuesta se le quita el password en el modelo
   return updatedUser;
 };
 
@@ -73,5 +71,11 @@ const getFavoriteFlatsIdsByUserId = async (userId) => {
   return favoriteFlats?.favoriteFlatIds || [];
 }
 
+const isPasswordsMatchRepository = async (password, userId) => {
+  const user = await User.findOne({ _id: userId, deletedAt: null });
+  if (!user) return false;
+  return await user.matchPassword(password);
+};
 
-export { saveUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser, getFavoriteFlatsIdsByUserId };
+
+export { saveUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser, getFavoriteFlatsIdsByUserId, isPasswordsMatchRepository };

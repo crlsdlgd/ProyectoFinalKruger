@@ -46,6 +46,14 @@ userSchema.post("find", function (users, next) {
   next();
 });
 
+userSchema.set("toJSON", {
+  transform: function (doc, ret) {
+    delete ret.password;
+    return ret;
+  }
+});
+
+
 // userSchema.post("findOneAndUpdate", function (user, next) {
 //   user.password = undefined;
 //   next();

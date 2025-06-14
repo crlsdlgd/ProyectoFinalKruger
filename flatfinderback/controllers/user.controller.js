@@ -1,4 +1,14 @@
-import { createUser, loginUser as loginUserService, getUserById as getUserByIdService, getAllUsers as getAllUsersService, updateUser as updateUserService, deleteUser as deleteUserService, toggleFavorite as toggleFavoriteService } from "../services/user.service.js";
+import {
+  createUser,
+  loginUser as loginUserService,
+  getUserById as getUserByIdService,
+  getAllUsers as getAllUsersService,
+  updateUser as updateUserService,
+  deleteUser as deleteUserService,
+  toggleFavorite as toggleFavoriteService,
+  updatePassword as updatePasswordService
+}
+  from "../services/user.service.js";
 
 const saveUser = async (req, res) => {
   try {
@@ -77,5 +87,22 @@ const toggleFavorite = async (req, res) => {
   }
 };
 
+const updatePassword = async (req, res) => {
+  try {
+    const user = await updatePasswordService(
+      req.user.id,
+      req.body.currentPassword,
+      req.body.newPassword
+    );
+    res.json(user);
+  } catch (error) {
+    if (error.message === "User not found" || error.message === "Current password is incorrect") {
+      return res.status(400).json({ message: error.message });
+    }
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
 
-export { saveUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser, toggleFavorite };
+
+
+export { saveUser, loginUser, getUserById, getAllUsers, updateUser, deleteUser, toggleFavorite, updatePassword };
