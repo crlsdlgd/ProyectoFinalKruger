@@ -12,6 +12,7 @@ import { CalendarIcon } from "../../components/icons/calendarIcon";
 import { ShieldIcon } from "../../components/icons/shieldIcon";
 import "./profile.css";
 import { PencilSquareIcon } from "../../components/icons/pencilSquareIcon";
+import { formatDateToISOShort } from "../../utils/utils";
 const Profile = () => {
   const [user, setUser] = useState({});
   const [userLogged, setUserLogged] = useState(() => {
@@ -71,7 +72,9 @@ const Profile = () => {
                 <Divider className="my-2" orientation="vertical" />
                 <CalendarIcon className="text-txtlight dark:text-txtdark" />
                 <span className="text-txtlight dark:text-txtdark">
-                  {user.birthdate ? ` ${user.birthdate.slice(0, 10)}` : " N/A"}
+                  {user.birthdate
+                    ? ` ${formatDateToISOShort(user.birthdate)}`
+                    : " N/A"}
                 </span>
               </div>
               <div className="flex items-center gap-2">

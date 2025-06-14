@@ -12,6 +12,7 @@ import { EyeIcon } from "../icons/eyeIcon";
 import "./userList.css";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useEffect } from "react";
+import { formatDateToISOShort } from "../../utils/utils";
 
 export const columns = [
   { name: "FIRST NAME", uid: "firstname" },
@@ -54,7 +55,7 @@ const UserList = ({ users = [] }) => {
       case "actions":
         return viewUserButton(user);
       case "birthdate":
-        return new Date(value).toLocaleDateString();
+        return formatDateToISOShort(value);
       default:
         return value;
     }

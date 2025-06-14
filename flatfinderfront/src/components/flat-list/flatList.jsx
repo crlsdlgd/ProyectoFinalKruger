@@ -14,6 +14,7 @@ import { HeartOutlineIcon } from "../icons/heartOutlineIcon";
 import "./flatList.css";
 import { useNavigate } from "react-router-dom";
 import FavoriteButton from "../favorite-button/FavoriteButton";
+import { formatDateToISOShort } from "../../utils/utils";
 
 export const columns = [
   { name: "CITY", uid: "city" },
@@ -86,7 +87,10 @@ const FlatList = ({ flats = [], handleFavorite }) => {
       case "rentPrice":
         return `$${value}`;
       case "dateAvailable":
-        return new Date(value).toLocaleDateString();
+        return new Date(flat.dateAvailable).getTime() < Date.now()
+          ? "Available Now"
+          : formatDateToISOShort(flat.dateAvailable);
+        break;
       case "actions":
         return renderActions(flat);
       default:

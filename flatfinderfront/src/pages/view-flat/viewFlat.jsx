@@ -15,6 +15,7 @@ import { MoneyIcon } from "../../components/icons/moneyIcon";
 import { CalendarCheckIcon } from "../../components/icons/CalendarCheckIcon";
 import { CloseIcon } from "../../components/icons/closeIcon";
 import { PencilSquareIcon } from "../../components/icons/pencilSquareIcon";
+import { formatDateToISOShort } from "../../utils/utils";
 
 const ViewFlat = () => {
   const [flat, setFlat] = useState(null);
@@ -104,7 +105,8 @@ const ViewFlat = () => {
                 <span className="text-txtlight dark:text-txtdark">
                   {new Date(flat.dateAvailable).getTime() < Date.now()
                     ? "Available Now"
-                    : "Available on " + flat.dateAvailable.slice(0, 10)}
+                    : "Available on " +
+                      formatDateToISOShort(flat.dateAvailable)}
                 </span>
               </div>
             </div>

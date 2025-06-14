@@ -11,6 +11,7 @@ import { MapPinIcon } from "../icons/mapPinIcon";
 import { EyeIcon } from "../icons/eyeIcon";
 import FavoriteButton from "../favorite-button/FavoriteButton";
 import { useNavigate } from "react-router-dom";
+import { formatDateToISOShort } from "../../utils/utils";
 
 const FlatCard = ({ flat, handleFavorite }) => {
   const navigate = useNavigate();
@@ -65,10 +66,14 @@ const FlatCard = ({ flat, handleFavorite }) => {
             <Divider orientation="vertical" />
             <div>
               <div>
-                <p className="text-small">{flat.dateAvailable.slice(0, 10)}</p>
+                <p className="text-xs">Date Available</p>
               </div>
               <div>
-                <p className="text-xs">Date Available</p>
+                <p className="text-txtlight dark:text-txtdark text-small">
+                  {new Date(flat.dateAvailable).getTime() < Date.now()
+                    ? "Available Now"
+                    : formatDateToISOShort(flat.dateAvailable)}
+                </p>
               </div>
             </div>
           </div>

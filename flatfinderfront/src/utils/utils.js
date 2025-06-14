@@ -17,6 +17,14 @@ const calendarToISOString = (date) => {
   return new Date(date).toISOString();
 };
 
+const formatDateToISOShort = (isoString) => {
+  const date = new Date(isoString);
+  const year = date.getUTCFullYear();
+  const month = date.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 const getDateYearsAgo = (yearsAgo) => {
   const today = new Date();
   const yearsAgoDate = new Date(today.getFullYear() - yearsAgo, today.getMonth(), today.getDate());
@@ -35,4 +43,4 @@ const toggleFavorite = async (flatId, setUserLogged) => {
   }
 };
 
-export { calculateAge, calendarToISOString, toggleFavorite, getDateYearsAgo };
+export { calculateAge, calendarToISOString, toggleFavorite, getDateYearsAgo, formatDateToISOShort };
