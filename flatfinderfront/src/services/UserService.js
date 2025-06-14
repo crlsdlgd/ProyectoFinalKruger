@@ -8,6 +8,7 @@ export class UserService {
 
   async saveUser(user) {
     user.birthdate = calendarToISOString(user.birthdate);
+    console.log("USER TO SAVE: ", user);
     const response = await fetch(`${this.url}/`, {
       method: 'POST',
       headers: {
@@ -60,6 +61,8 @@ export class UserService {
       body: JSON.stringify(user)
     })
   }
+
+
   async deleteUser(id) {
     const localStorageService = new LocalStorageService();
     const token = localStorageService.getToken();

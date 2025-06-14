@@ -13,8 +13,8 @@ const calculateAge = (birthDate) => {
 };
 
 const calendarToISOString = (date) => {
-  const { year, month, day } = date;
-  return new Date(year, month - 1, day).toISOString();
+  console.log("DATE CALENDAR", date);
+  return new Date(date).toISOString();
 };
 
 const getDateYearsAgo = (yearsAgo) => {

@@ -12,10 +12,15 @@ const Register = () => {
 
   const submitRegister = async (e) => {
     e.preventDefault();
+    console.log("entro al register");
     const userService = new UserService();
+    console.log("creo el servicio");
 
     try {
+      console.log("antes de consumir service");
       const response = await userService.saveUser(user);
+      console.log("consumio el service");
+      console.log(response);
       addToast({
         title: "Register success",
         description: "User registered successfully, please login",
@@ -27,28 +32,15 @@ const Register = () => {
         navigate("/login");
       }, 2000);
     } catch (error) {
+      console.log("ERROR", error);
       let description = "Registration failed";
       if (error.message.includes("email")) {
         description = "Email is already in use";
       }
-      // else if (error.message.includes("nickname")) {
-      //   description = "Nickname is already taken";
-      // }
 
       addToast({
         title: "Register failed",
         description,
-        type: "error",
-        variant: "bordered",
-        color: "danger",
-      });
-    }
-
-    if (response) {
-    } else {
-      addToast({
-        title: "Register failed",
-        description: "User already exists",
         type: "error",
         variant: "bordered",
         color: "danger",

@@ -1,15 +1,66 @@
 import Footer from "../../components/footer/footer";
 import "../pages.css";
 import { NavBar } from "../../components/navbar/navbar";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { UserService } from "../../services/userService";
+import { addToast } from "@heroui/react";
+import UserForm from "../../components/user-form/userForm";
 
 const EditUser = () => {
+  const [user, setUser] = useState({});
+  const { userId } = useParams();
+
+  useEffect(() => {
+    loadUser();
+  }, [userId]);
+
+  const loadUser = async () => {
+    const userService = new UserService();
+    const data = await userService.getUserById(userId);
+    console.log(data);
+    setUser(data);
+  };
+
+  const updateUser = async () => {
+    const userService = new UserService();
+    try {
+      await userService.updateUser(userId, user);
+      addToast({
+        title: "User updated",
+        description: "User updated successfully",
+        type: "success",
+        variant: "bordered",
+        color: "success",
+      });
+      setTimeout(() => {
+        window.history.back();
+      }, 2000);
+    } catch (error) {
+      addToast({
+        title: "Update failed",
+        description: "Error updating user",
+        type: "error",
+        variant: "bordered",
+        color: "danger",
+      });
+    }
+  };
+
   return (
     <div className="page-wrapper dark:bg-bgdark bg-bglight">
       <div>
         <NavBar />
       </div>
       <main>
-        <p>Aqui va el contenido de edit user</p>
+        <div className="flex flex-col items-center justify-center">
+          <UserForm
+            user={user}
+            setUser={setUser}
+            action={updateUser}
+            buttonAction={"UPDATE"}
+          />
+        </div>
       </main>
       <div>
         <Footer />
