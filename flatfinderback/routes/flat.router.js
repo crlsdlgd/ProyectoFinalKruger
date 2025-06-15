@@ -23,8 +23,8 @@ const router = express.Router();
 router.use(authenticationMiddleware);
 
 // MESSAGES ROUTES
-router.get("/:flatId/messages", authorizeFlatOwner, getMessagesByFlat); //Antes llamado getAllMessages, obtiene todos los mensajes de un flat (disponible para el owner del flat)
-router.get("/:flatId/messages/:senderId", validateUserIsSender, getMessagesByFlatAndSender); //Antes llamado getUserMessages, obtiene solo los mensajes que un usuario a escrito sobre un flat (disponible para el sender del mensaje)
+router.get("/:flatId/messages", getMessagesByFlat); //Antes llamado getAllMessages, obtiene todos los mensajes de un flat 
+// router.get("/:flatId/messages/:senderId", validateUserIsSender, getMessagesByFlatAndSender); //Antes llamado getUserMessages, obtiene solo los mensajes que un usuario a escrito sobre un flat (disponible para el sender del mensaje)
 router.post("/:flatId/messages", sanitizeBody, addMessage);
 
 // FLATS ROUTES

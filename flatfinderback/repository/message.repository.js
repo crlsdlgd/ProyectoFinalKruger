@@ -1,7 +1,7 @@
 import { Message } from "../models/message.model.js";
 
-const getMessagesByFlat = async (flatId) => {
-  return await Message.find({ flatId, deletedAt: null });
+const getMessagesByFlat = async (query) => {
+  return await Message.find(query).populate("senderId", "firstname lastname email");
 };
 const getMessagesByFlatAndSender = async (flatId, senderId) => {
   return await Message.find({ flatId, senderId, deletedAt: null });

@@ -6,7 +6,7 @@ import {
 
 const getMessagesByFlat = async (req, res) => {
   try {
-    const messages = await getMessagesByFlatService(req.params.flatId);
+    const messages = await getMessagesByFlatService(req.params.flatId, req.user.id);
     res.status(200).json(messages);
   } catch (error) {
     res.status(400).json({ message: error.message });

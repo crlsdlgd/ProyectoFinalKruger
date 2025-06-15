@@ -16,9 +16,11 @@ import { CalendarCheckIcon } from "../../components/icons/CalendarCheckIcon";
 import { CloseIcon } from "../../components/icons/closeIcon";
 import { PencilSquareIcon } from "../../components/icons/pencilSquareIcon";
 import { formatDateToISOShort } from "../../utils/utils";
+import Messages from "../../components/messages/messages";
 
 const ViewFlat = () => {
   const [flat, setFlat] = useState(null);
+  const [messages, setMessages] = useState([]);
   const [userLogged, setUserLogged] = useState(() => {
     const user = localStorage.getItem("user");
     return user ? JSON.parse(user) : null;
@@ -28,6 +30,7 @@ const ViewFlat = () => {
 
   useEffect(() => {
     loadFlat();
+    loadMessages();
   }, []);
 
   const loadFlat = async () => {
@@ -35,6 +38,12 @@ const ViewFlat = () => {
     const data = await flatService.getFlatById(flatId);
     data.isFavorite = userLogged.favoriteFlatIds?.includes(data._id) || false;
     setFlat(data);
+  };
+
+  const loadMessages = async () => {
+    const flatService = new FlatService();
+    const data = await flatService.getMessages(flatId);
+    setMessages(data);
   };
 
   return (
@@ -131,6 +140,7 @@ const ViewFlat = () => {
             </div>
           </div>
         )}
+        {messages && <Messages messages={messages} />}
       </main>
       <div>
         <Footer />
