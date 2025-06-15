@@ -114,4 +114,22 @@ export class FlatService {
     });
     return response.json();
   }
+
+  async addMessage(flatId, content) {
+    const localStorageService = new LocalStorageService();
+    const token = localStorageService.getToken();
+    console.log(`URL: ${this.url}/${flatId}/messages`);
+    const response = await fetch(`${this.url}/${flatId}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ content: content })
+    });
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  }
 }

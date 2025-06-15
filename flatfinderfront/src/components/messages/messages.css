@@ -1,0 +1,35 @@
+.messages-container{
+
+}
+
+.messages-input-container{
+
+}
+
+.messages-list-container{
+}
+
+.messages-item-container, .messages-input-container{
+  border-radius: 16px;
+}
+
+.message-header{
+  display: flex;
+  justify-content: space-between;
+}
+.message-user{
+
+}
+
+.message-timeago{
+  margin-right: 10px;
+}
+
+.message-timeago p {
+  font-size: small;
+}
+
+.message-content{
+
+}
+

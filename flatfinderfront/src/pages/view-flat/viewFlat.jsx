@@ -2,9 +2,9 @@ import Footer from "../../components/footer/footer";
 import "../pages.css";
 import { NavBar } from "../../components/navbar/navbar";
 import { useEffect, useState } from "react";
-import { FlatService } from "../../services/flatService";
+import { FlatService } from "../../services/FlatService";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Divider, Image, Tooltip, user } from "@heroui/react";
+import { addToast, Button, Divider, Image, Tooltip, user } from "@heroui/react";
 import { MapPinIcon } from "../../components/icons/mapPinIcon";
 import { MapIcon } from "../../components/icons/mapIcon";
 import { HomeModernIcon } from "../../components/icons/homeModernIcon";
@@ -46,6 +46,30 @@ const ViewFlat = () => {
     setMessages(data);
   };
 
+  const sendMessage = async (content) => {
+    const messageService = new FlatService();
+    try {
+      await messageService.addMessage(flatId, content);
+      addToast({
+        title: "Message sent",
+        description: "Message sent successfully",
+        type: "success",
+        variant: "bordered",
+        color: "success",
+      });
+
+      loadMessages();
+    } catch (error) {
+      addToast({
+        title: "Error sending message",
+        description: "Error sending message",
+        type: "error",
+        variant: "bordered",
+        color: "error",
+      });
+    }
+  };
+
   return (
     <div className="page-wrapper dark:bg-bgdark bg-bglight">
       <div>
@@ -53,7 +77,7 @@ const ViewFlat = () => {
       </div>
       <main>
         {flat && (
-          <div className="flex flex-col justify-between md:w-4/5 mx-auto relative">
+          <div className="flex flex-col justify-between md:w-4/5 mx-auto relative my-4">
             <div>
               <Image
                 alt="flat image"
@@ -140,7 +164,7 @@ const ViewFlat = () => {
             </div>
           </div>
         )}
-        {messages && <Messages messages={messages} />}
+        {messages && <Messages messages={messages} sendMessage={sendMessage} />}
       </main>
       <div>
         <Footer />

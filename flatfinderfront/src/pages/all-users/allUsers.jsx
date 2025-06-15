@@ -107,7 +107,7 @@ const AllUsers = () => {
                 )}
               </div>
               {!loadingPages && (
-                <div className="flex justify-center mt-1">
+                <div className="flex justify-center mt-1 mb-4">
                   <PaginationFilter
                     totalPages={users.pages}
                     setPaginationFilter={setPaginationFilter}

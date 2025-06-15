@@ -4,7 +4,7 @@ import FlatList from "../../components/flat-list/flatList";
 import FlatCard from "../../components/flat-card/flatCard";
 import { NavBar } from "../../components/navbar/navbar";
 import { useEffect, useState } from "react";
-import { FlatService } from "../../services/flatService";
+import { FlatService } from "../../services/FlatService";
 import { PaginationFilter } from "../../components/paginationFilter/paginationFilter";
 import { toggleFavorite } from "../../utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -144,7 +144,7 @@ const Home = () => {
                 </div>
               )}
               {!loadingPages && (
-                <div className="flex justify-center mt-1">
+                <div className="flex justify-center mt-1 mb-4">
                   <PaginationFilter
                     totalPages={flats.pages}
                     setPaginationFilter={setPaginationFilter}

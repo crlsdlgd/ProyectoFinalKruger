@@ -39,7 +39,7 @@ const Profile = () => {
       </div>
       <main>
         {user && (
-          <div className="flex flex-col justify-between md:w-4/5 mx-auto relative">
+          <div className="flex flex-col justify-between md:w-4/5 mx-auto relative my-4">
             <div>
               <Image
                 alt="profile image"
