@@ -46,7 +46,7 @@ const Profile = () => {
                 className="object-cover"
                 width="100%"
                 height="auto"
-                src="/assets/flat2.jpg"
+                src="/assets/user1.jpg"
               />
             </div>
             <div className="absolute top-4 right-4 z-10">

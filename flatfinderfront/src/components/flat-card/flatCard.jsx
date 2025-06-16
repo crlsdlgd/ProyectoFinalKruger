@@ -42,7 +42,7 @@ const FlatCard = ({ flat, handleFavorite }) => {
               </div>
             </div>
             <div>
-              <p className="text-base font-semibold">{`$ ${flat.rentPrice}`}</p>
+              <p className="text-2xl font-semibold">{`$ ${flat.rentPrice}`}</p>
             </div>
           </div>
           <div className=" my-1 flex justify-center h-8 items-center space-x-4 text-small">
