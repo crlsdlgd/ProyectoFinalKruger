@@ -8,6 +8,8 @@ import ThemeButton from "../../components/theme-button/themeButton";
 import { useNavigate } from "react-router-dom";
 import { EyeSlashIcon } from "../../components/icons/eyeSlashIcon.jsx";
 import { EyeIcon } from "../../components/icons/eyeIcon.jsx";
+import { UserIcon } from "../../components/icons/userIcon.jsx";
+import { KeyIcon } from "../../components/icons/keyIcon.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -35,11 +37,21 @@ const Login = () => {
 
   return (
     <main className="login-container dark:bg-bgdark bg-bglight">
-      <div>
+      <div className="right-4 top-4 absolute">
         <ThemeButton />
       </div>
-      <section className="login-form-container">
+      <section className="login-form-container dark:bg-bgdarkOpacity bg-bglightOpacity">
         <form onSubmit={(e) => handleLogin(e)} className="login-form">
+          <div className="flex flex-col">
+            <img
+              src="/svg/flat-finder-logo2.svg"
+              alt="Logo"
+              className="h-10 mx-auto"
+            />
+            <p className="font-bold text-inherit hidden sm:block mx-auto text-txtlight dark:text-txtdark">
+              Welcome to FLAT FINDER
+            </p>
+          </div>
           <h3 className="login-title text-txtlight dark:text-txtdark">
             Sign In
           </h3>
@@ -50,10 +62,13 @@ const Login = () => {
               className="login-input text-txtlight dark:text-txtdark"
               isRequired
               variant="underlined"
-              placeholder="Enter your email"
+              placeholder="example@gmail.com"
               value={email}
               onValueChange={setEmail}
               autoComplete="off"
+              startContent={
+                <UserIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              }
             />
             <Input
               label="Password"
@@ -61,10 +76,13 @@ const Login = () => {
               className="login-input text-txtlight dark:text-txtdark"
               isRequired
               variant="underlined"
-              placeholder="Enter your password"
+              placeholder="Password"
               value={password}
               onValueChange={setPassword}
               autoComplete="off"
+              startContent={
+                <KeyIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+              }
               endContent={
                 <button
                   type="button"
