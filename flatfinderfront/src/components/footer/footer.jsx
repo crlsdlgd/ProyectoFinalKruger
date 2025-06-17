@@ -1,3 +1,4 @@
+import "./footer.css";
 const Footer = () => {
   return (
     <div className="footer-container flex border-t-1 dark:border-[#27272a] border-[#e4e4e7]">

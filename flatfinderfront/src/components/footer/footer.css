@@ -1,0 +1,16 @@
+/*Componente footer*/
+
+.footer-container {
+    padding: 20px;
+    text-align: center;
+    
+    border-top: 1px solid #e4e4e7;
+    color: #111827;
+    font-family: 'Inter', sans-serif;
+}
+.footer-container p{
+    color: #6b7280;
+    font-size: 14px;
+    margin: 0;
+
+}
