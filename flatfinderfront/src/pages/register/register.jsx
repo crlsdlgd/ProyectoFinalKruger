@@ -24,7 +24,7 @@ const Register = () => {
         color: "success",
       });
       setTimeout(() => {
-        navigate("/login");
+        window.location.href = "/login";
       }, 2000);
     } catch (error) {
       let description = "Registration failed";
