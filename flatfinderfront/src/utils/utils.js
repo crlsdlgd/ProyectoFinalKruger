@@ -44,9 +44,7 @@ const toggleFavorite = async (flatId, setUserLogged) => {
 
 function formatTimeAgo(date) {
   const now = new Date();
-  console.log("Fecha recibida", date);
   const seconds = Math.floor((now - new Date(date)) / 1000);
-  console.log("Segundos de diferencia", seconds);
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
