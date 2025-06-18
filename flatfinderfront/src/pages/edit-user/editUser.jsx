@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { UserService } from "../../services/userService";
 import { addToast } from "@heroui/react";
 import UserForm from "../../components/user-form/userForm";
+import "./editUser.css";
 
 const EditUser = () => {
   const [user, setUser] = useState({});
@@ -51,8 +52,8 @@ const EditUser = () => {
       <div>
         <NavBar />
       </div>
-      <main>
-        <div className="flex flex-col items-center justify-center">
+      <main className="edit-user-container">
+        <div className="edit-user-form dark:bg-bgdarkOpacity bg-bglightOpacity">
           <UserForm
             user={user}
             setUser={setUser}

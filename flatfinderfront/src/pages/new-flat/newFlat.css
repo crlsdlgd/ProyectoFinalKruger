@@ -1,0 +1,23 @@
+.newflat-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newflat-form-container{
+  width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  gap: 10px;
+}
+
+@media screen and (max-width: 420px) {
+  .newflat-form-container {
+    width: 100%;
+    padding: 10px;
+  }
+  
+}

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FlatService } from "../../services/flatService";
 import FlatForm from "../../components/flat-form/flatForm";
 import { addToast } from "@heroui/react";
+import "./newFlat.css";
 
 const NewFlat = () => {
   const [flat, setFlat] = useState({});
@@ -39,8 +40,8 @@ const NewFlat = () => {
       <div>
         <NavBar />
       </div>
-      <main>
-        <div className="flex flex-col items-center justify-center">
+      <main className="newflat-container">
+        <div className="newflat-form-container dark:bg-bgdarkOpacity bg-bglightOpacity">
           <FlatForm
             flat={flat}
             setFlat={setFlat}

@@ -127,11 +127,12 @@ const FlatForm = ({ flat, setFlat, action, buttonText }) => {
         <Checkbox
           isSelected={flat.hasAC}
           onValueChange={(value) => setFlat({ ...flat, hasAC: value })}
+          className="mt-2"
         >
           Has AC
         </Checkbox>
         <div>
-          <Button type="submit" color="primary">
+          <Button type="submit" color="primary" className="w-full mt-2">
             {buttonText}
           </Button>
         </div>

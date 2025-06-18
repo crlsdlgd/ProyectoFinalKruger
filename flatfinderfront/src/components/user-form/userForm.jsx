@@ -153,7 +153,9 @@ const UserForm = ({ user, setUser, action, buttonAction }) => {
         </>
       )}
 
-      <Button type="submit" color="primary" className="w-full">{buttonAction}</Button>
+      <Button type="submit" color="primary" className="w-full mt-2">
+        {buttonAction}
+      </Button>
     </Form>
   );
 };

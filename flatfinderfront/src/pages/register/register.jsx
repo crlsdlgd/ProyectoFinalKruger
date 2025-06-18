@@ -47,18 +47,17 @@ const Register = () => {
       <div className="absolute right-4 top-4">
         <ThemeButton />
       </div>
-      
-    
-      <div className="register-form register-form-container dark:bg-bgdark bg-bglight">
-          <img
+
+      <div className="register-form-container dark:bg-bgdarkOpacity bg-bglightOpacity">
+        <img
           src="/svg/flat-finder-logo2.svg"
           alt="Logo"
-          className="h-10 mx-auto mt-4 mb-2"
+          className="h-10 mx-auto mb-2"
         />
-        <p className="font-bold text-inherit hidden sm:block mx-auto text-txtlight dark:text-txtdark">
+        <p className="font-bold text-inherit hidden sm:block mx-auto text-txtlight dark:text-txtdark text-center">
           Welcome to FLAT FINDER
         </p>
-        <UserForm 
+        <UserForm
           user={user}
           setUser={setUser}
           action={submitRegister}
