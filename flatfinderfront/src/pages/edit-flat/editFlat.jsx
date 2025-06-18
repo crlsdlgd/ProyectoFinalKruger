@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { FlatService } from "../../services/flatService";
 import FlatForm from "../../components/flat-form/flatForm";
 import { addToast } from "@heroui/react";
+import "./editFlat.css";
 
 const EditFlat = () => {
   const [flat, setFlat] = useState({});
@@ -51,8 +52,8 @@ const EditFlat = () => {
       <div>
         <NavBar />
       </div>
-      <main>
-        <div className="flex flex-col items-center justify-center">
+      <main className="editflat-container">
+        <div className="editflat-form-container dark:bg-bgdarkOpacity bg-bglightOpacity">
           <FlatForm
             flat={flat}
             setFlat={setFlat}
