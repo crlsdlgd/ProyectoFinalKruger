@@ -1,4 +1,4 @@
-  import { Input, Button, addToast } from "@heroui/react";
+import { Input, Button, addToast } from "@heroui/react";
 import { useState } from "react";
 import "./login.css";
 import { UserService } from "../../services/userService.js";
@@ -36,11 +36,11 @@ const Login = () => {
   };
 
   return (
-    <main className="login-container dark:bg-bgdark bg-bglight">
+    <main className="login-container dark:bg-[url('/assets/inspiration-desing/blurry-gradient-haikei(2).svg')] bg-[url('/assets/inspiration-desing/blurry-gradient-haikei(3).svg')] bg-cover">
       <div className="right-4 top-4 absolute">
         <ThemeButton />
       </div>
-      <section className="login-form-container dark:bg-bgdarkOpacity bg-bglightOpacity">
+      <section className="login-form-container">
         <form onSubmit={(e) => handleLogin(e)} className="login-form">
           <div className="flex flex-col">
             <img
