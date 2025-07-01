@@ -99,6 +99,9 @@ export class FlatService {
       },
       body: JSON.stringify(flat)
     });
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
     return response.json();
   }
 

@@ -115,9 +115,10 @@ const FlatForm = ({ flat, setFlat, action, buttonText }) => {
           validate={(value) => {
             const inputDate = parseDate(value.toString());
             const todayDate = today("UTC");
+            todayDate.set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
 
-            if (inputDate.compare(todayDate) <= 0) {
-              return "Date available must be from tomorrow onwards";
+            if (inputDate.compare(todayDate) < 0) {
+              return "Date available must be from today onwards";
             }
             return true;
           }}
