@@ -49,13 +49,16 @@ const UpdatePassword = () => {
   };
 
   return (
-    <div className="page-wrapper dark:bg-bgdark bg-bglight">
+    <div className="page-wrapper dark:bg-[url('/assets/inspiration-desing/blurry-gradient-haikei(2).svg')] bg-[url('/assets/inspiration-desing/blurry-gradient-haikei(3).svg')] bg-cover">
       <div>
         <NavBar />
       </div>
       <main className="update-password-container">
         <section>
-          <form onSubmit={handleSubmit} className="update-password-form">
+          <form
+            onSubmit={handleSubmit}
+            className="update-password-form bg-background/30 before:bg-white/10"
+          >
             <div>
               <Input
                 value={currentPassword}

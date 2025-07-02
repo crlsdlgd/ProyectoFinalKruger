@@ -171,7 +171,7 @@ const FlatFilter = ({ cities, setSearchFilters }) => {
               type="submit"
               variant="solid"
               color="primary"
-              className="text-txtlight dark:text-txtdark"
+              className="text-txtdark"
             >
               Apply Filters
             </Button>

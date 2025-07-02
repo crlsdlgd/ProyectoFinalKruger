@@ -48,12 +48,12 @@ const EditUser = () => {
   };
 
   return (
-    <div className="page-wrapper dark:bg-bgdark bg-bglight">
+    <div className="page-wrapper dark:bg-[url('/assets/inspiration-desing/blurry-gradient-haikei(2).svg')] bg-[url('/assets/inspiration-desing/blurry-gradient-haikei(3).svg')] bg-cover">
       <div>
         <NavBar />
       </div>
       <main className="edit-user-container">
-        <div className="edit-user-form dark:bg-bgdarkOpacity bg-bglightOpacity">
+        <div className="edit-user-form bg-background/30 before:bg-white/10">
           <UserForm
             user={user}
             setUser={setUser}

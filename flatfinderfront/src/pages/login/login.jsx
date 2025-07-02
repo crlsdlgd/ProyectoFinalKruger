@@ -40,7 +40,7 @@ const Login = () => {
       <div className="right-4 top-4 absolute">
         <ThemeButton />
       </div>
-      <section className="login-form-container">
+      <section className="login-form-container bg-background/30 before:bg-white/10">
         <form onSubmit={(e) => handleLogin(e)} className="login-form">
           <div className="flex flex-col">
             <img

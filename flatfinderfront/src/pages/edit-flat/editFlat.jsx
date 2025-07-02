@@ -3,7 +3,7 @@ import "../pages.css";
 import { NavBar } from "../../components/navbar/navbar";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FlatService } from "../../services/flatService";
+import { FlatService } from "../../services/FlatService";
 import FlatForm from "../../components/flat-form/flatForm";
 import { addToast } from "@heroui/react";
 import "./editFlat.css";
@@ -48,12 +48,12 @@ const EditFlat = () => {
   };
 
   return (
-    <div className="page-wrapper dark:bg-bgdark bg-bglight">
+    <div className="page-wrapper dark:bg-[url('/assets/inspiration-desing/blurry-gradient-haikei(2).svg')] bg-[url('/assets/inspiration-desing/blurry-gradient-haikei(3).svg')] bg-cover">
       <div>
         <NavBar />
       </div>
       <main className="editflat-container">
-        <div className="editflat-form-container dark:bg-bgdarkOpacity bg-bglightOpacity">
+        <div className="editflat-form-container bg-background/30 before:bg-white/10">
           <FlatForm
             flat={flat}
             setFlat={setFlat}

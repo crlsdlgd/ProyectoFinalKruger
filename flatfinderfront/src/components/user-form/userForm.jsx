@@ -76,7 +76,7 @@ const UserForm = ({ user, setUser, action, buttonAction }) => {
         onChange={(e) => setUser({ ...user, email: e.target.value })}
         label="Email"
         type="email"
-        className="user-input"
+        className="user-input text-txtlight dark:text-txtdark"
         isRequired
         variant="underlined"
         placeholder="Enter your email"

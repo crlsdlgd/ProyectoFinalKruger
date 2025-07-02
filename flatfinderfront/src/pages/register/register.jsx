@@ -43,12 +43,12 @@ const Register = () => {
   };
 
   return (
-    <main className="register-container dark:bg-bgdark bg-bglight">
+    <main className="register-container dark:bg-[url('/assets/inspiration-desing/blurry-gradient-haikei(2).svg')] bg-[url('/assets/inspiration-desing/blurry-gradient-haikei(3).svg')] bg-cover">
       <div className="absolute right-4 top-4">
         <ThemeButton />
       </div>
 
-      <div className="register-form-container dark:bg-bgdarkOpacity bg-bglightOpacity">
+      <div className="register-form-container bg-background/30 before:bg-white/10">
         <img
           src="/svg/flat-finder-logo2.svg"
           alt="Logo"
