@@ -3,7 +3,7 @@ import { LocalStorageService } from "./localStorageService";
 
 export class UserService {
   constructor() {
-    this.url = 'http://localhost:8080/user';
+    this.url = 'http://localhost:3000/user';
   }
 
   async saveUser(user) {

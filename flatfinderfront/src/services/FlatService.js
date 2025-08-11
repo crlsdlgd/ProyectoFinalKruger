@@ -2,7 +2,7 @@ import { LocalStorageService } from "./localStorageService";
 
 export class FlatService {
   constructor() {
-    this.url = 'http://localhost:8080/flat';
+    this.url = 'http://localhost:3000/flat';
   }
 
   async getAllFlats(filters, pathname) {
