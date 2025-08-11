@@ -46,3 +46,24 @@ Su objetivo es resolver el problema de **búsqueda y publicación de departament
 ### 1️⃣ Clonar el proyecto
 ```bash
 git clone https://github.com/crlsdlgd/ProyectoFinalKruger.git
+```
+### 2️⃣ Configuración del Backend
+1. Ir a la carpeta flatfinderback.
+
+2. Copiar el archivo .env.example y renombrarlo como .env
+
+3. Completar las variables de entorno según tu configuración.
+
+4. Instalar dependencias
+```bash
+npm install
+```
+5. Ejecutar en desarrollo
+```bash
+npm run start:dev
+```
+> O en produccion
+```bash
+npm start
+```
+> El backend se ejecutará en el puerto **3000**.
