@@ -29,6 +29,41 @@ DATABASE
 - Mongo Atlas
 ##Despliegue
 Clone el proyecto con el comando
-
+git clone https://github.com/crlsdlgd/ProyectoFinalKruger.git
+Para ejecutar el Back-end ingrese a la carpeta flatfinderback y encuentre el archivo .env.example
+con este archivo de ejemplo cree un archivo con nombre .env y complete la información faltante
+Esta información es propia para cada configuracion
+Dentro de la carpeta flatfinderback abra una terminal y ejecute el comando
+npm install
+Para ejecutar en entorno de desarrollo ejecute
+npm run start:dev
+Para ejecutar en entorno de producción ejecute
+npm run start
+Este se ejecutara en el puerto 3000
+Para ejecutar el Front-end ingrese a la carpeta flatfinderfront y abra una terminal 
+para ejecutar en entorno de desarrollo ejecute:
+npm run dev
+para ejecutar en entorno de produccion ejecute:
+npm run start
+Este se ejecutara en el puerto 5173
+#Uso
+dirigase a http://localhost:5173/
+aparecera la imagen
 ![login image](flatfinderfront/public/assets/login.png)
+Ingrese sus credenciales, en caso de no tener una cuenta presione en el enlace Sing Up.
+Aparecera el formulario de registro de nuevo usuario.
+![register image](flatfinderfront/public/assets/register.png)
+Ingrese todos los datos solicitados y presione en Register. Si los datos son correctos vera una notificacion en la parte superior derecha indicandole su registro exitoso y redireccionandole a Login para que pueda ingresar a la plataforma. En caso de contar con una cuenta presione en Sing In.
+En la parte superior encontrara un menu con las opciones de Home, My Flats, favorites y Users (Solo si es administrador). Opciones de tema claro y oscuro, y opciones de My Profile, Update Password y Log out.
+![menu image](flatfinderfront/public/assets/menu.png)
+![usermenu image](flatfinderfront/public/assets/usermenu.png)
+En la pagina Home encontrara todos los departamentos registrados. Puede filtrarlos por cuidad, Area o suoerficie del departamento, Precio y ordenarlos por cuidad, area y precio de forma acendente o descendente. Para aplicar los filtros presione en Apply Filter o en Clean Filters si quiere borrar todos los filtros.
+![home image](flatfinderfront/public/assets/home1.png)
+Se listaran los departamentos de diez en diez. si existen mas departamentos, En la parte inferior se muestrara una barra de paginación que le permitira navegar entre paginas de departamentos.
+![home image](flatfinderfront/public/assets/home2.png)
+En la pagina de my flats entontrara los Departamentos que usted ha creado, en la parte inferior derecha encontrara un boton verde con signo de + que le llevara al formulario de crear una nueva publicaion de departamento.
+![newflat image](flatfinderfront/public/assets/newflat.png)
+![newflat2 image](flatfinderfront/public/assets/newflat2.png)
+Si presiona en el boton de ojo en cualquier departamento, pordra ver mas detalles del departamento, añadir comentarios, ver comentarios de otros usuarios y en caso de ser usted el quien creo el departamento, puede actualizar la informacion. 
+![flatdetail image](flatfinderfront/public/assets/flatdetail.png)
 
