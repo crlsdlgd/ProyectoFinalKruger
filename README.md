@@ -78,6 +78,8 @@ npm run dev
 npm start
 ```
 > El frontend se ejecutará en el puerto **5173**
+---
+
 ## 💻 Uso
 1. Ir a http://localhost:5173/.
 
@@ -88,6 +90,8 @@ npm start
 4. Crear, editar o eliminar tus publicaciones.
 
 5. Marcar favoritos, añadir comentarios, y más.
+
+---
 
 ## 📷 Capturas de pantalla
 ### Login
@@ -113,8 +117,12 @@ npm start
 ### Actualizar contraseña
 ![updatepassword image](flatfinderfront/public/assets/updatepassword.png)
 
+---
+
 ## 📜 Licencia
 Este proyecto está bajo la licencia **MIT**
+
+---
 
 ## 👥 Créditos
 - Carlos Delgado
