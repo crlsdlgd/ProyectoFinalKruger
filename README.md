@@ -1,8 +1,8 @@
-#FLAT FINDER
+# FLAT FINDER
 ##Descripción
 Este es el proyecto de graduación del bootcamp de Fullstack de Carlos Delgado y Alejandro Orellana.
 En este proyecto buscamos resolver el problema de busqueda y publicación de departamentos de arrendamiendo.
-##Lista de funcionalidades
+## Lista de funcionalidades
 Resgitro de usuarios
 Acceso de usuarios
 crear publicaciones de departamentos en disponibilidad de arrendamiento
@@ -13,7 +13,7 @@ Usuarios con rol de Administrador pueden buscar, filtrar y ordenar usuarios
 Usuarios con rol de Administrador pueden modificar los datos de los usuarios
 Todos los usuarios pueden actualizar sus datos a excepcion de el email
 Ningun usuario con cualquier rol puede actualizar la contraseña de otro usuario
-##Tecnologias utilizadas
+## Tecnologias utilizadas
 FRONT-END
 - React 18.3.1
 - TailwindCSS 3.4.16
@@ -27,7 +27,7 @@ BACK-END
 - Json Web Token 9.0.2
 DATABASE
 - Mongo Atlas
-##Despliegue
+## Despliegue
 Clone el proyecto con el comando
 git clone https://github.com/crlsdlgd/ProyectoFinalKruger.git
 Para ejecutar el Back-end ingrese a la carpeta flatfinderback y encuentre el archivo .env.example
@@ -46,7 +46,7 @@ npm run dev
 para ejecutar en entorno de produccion ejecute:
 npm run start
 Este se ejecutara en el puerto 5173
-#Uso
+# Uso
 dirigase a http://localhost:5173/
 aparecera la imagen
 ![login image](flatfinderfront/public/assets/login.png)
@@ -66,4 +66,20 @@ En la pagina de my flats entontrara los Departamentos que usted ha creado, en la
 ![newflat2 image](flatfinderfront/public/assets/newflat2.png)
 Si presiona en el boton de ojo en cualquier departamento, pordra ver mas detalles del departamento, añadir comentarios, ver comentarios de otros usuarios y en caso de ser usted el quien creo el departamento, puede actualizar la informacion. 
 ![flatdetail image](flatfinderfront/public/assets/flatdetail.png)
+Si usted presiona en el boton con icono de corazon el corazon se mostrara completamente en rojo y se añadira a su lista de departamentos favoritos. si usted vuelve a presionar en el corazon este pasara a estar transparente y se quitara se de su lista de favoritos.
+![favorites image](flatfinderfront/public/assets/favorites.png)
+Si usted tiene el rol de Administrador, en la barra de navegacion se le mostrara la opcion de User. En esta pagina se le mostrara un listado de usuarios en los que usted puede Filtrar por edad, ordenar por nombre apellido o edad en forma acendente o descentente.
+![users image](flatfinderfront/public/assets/users.png)
+Si presiona en el boton con ojo se le mostrara mas detalles del usuario y editar sus datos o rol.
+![userdetail image](flatfinderfront/public/assets/userdetail.png)
+![useredit image](flatfinderfront/public/assets/useredit.png)
+En el menu de usuario podra ver la opción de Update password, aqui usted puede actualizar su contraseña
+![updatepassword image](flatfinderfront/public/assets/updatepassword.png)
+Y por ultimo vera la opcion de Log Out que le permitira cerrar sesion. sera redirigido a la pagina de inicio de sesion.
+## Licencia
+- Tipo de licencia MIT
+## Creditos 
+- Carlos Delgado
+- Alejandro Orellana
+
 
