@@ -1,5 +1,5 @@
 # FLAT FINDER
-##Descripción
+## Descripción
 Este es el proyecto de graduación del bootcamp de Fullstack de Carlos Delgado y Alejandro Orellana.
 En este proyecto buscamos resolver el problema de busqueda y publicación de departamentos de arrendamiendo.
 ## Lista de funcionalidades
@@ -46,7 +46,7 @@ npm run dev
 para ejecutar en entorno de produccion ejecute:
 npm run start
 Este se ejecutara en el puerto 5173
-# Uso
+## Uso
 dirigase a http://localhost:5173/
 aparecera la imagen
 ![login image](flatfinderfront/public/assets/login.png)
