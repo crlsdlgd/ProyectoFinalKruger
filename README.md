@@ -83,8 +83,14 @@ npm start
 ### 3️⃣ Configuración del Frontend
 
 1. Ir a la carpeta flatfinderfront.
+  
+2. Instalar dependencias
 
-2. Ejecutar en desarrollo o producción
+```bash
+npm install
+```
+
+3. Ejecutar en desarrollo o producción
 
 ```bash
 # Desarrollo
